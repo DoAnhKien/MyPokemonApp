@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.mypokemonapp.model.Pokemon;
+import com.example.mypokemonapp.model.UserPokemon;
 import com.example.mypokemonapp.repository.NetworkRepository;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class UserPokemonViewModel extends ViewModel {
 
     private NetworkRepository repository;
     private MutableLiveData<List<Pokemon>> mPokemon = new MutableLiveData<>();
+    private MutableLiveData<List<UserPokemon>> mUserPokemon = new MutableLiveData<>();
     private String TAG = "UserPokemonViewModel";
 
     @ViewModelInject
@@ -30,6 +32,10 @@ public class UserPokemonViewModel extends ViewModel {
         return mPokemon;
     }
 
+    public MutableLiveData<List<UserPokemon>> getmUserPokemon() {
+        return mUserPokemon;
+    }
+
     public void getAllThePokemonFromServer() {
         repository.getAllPokemon().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -37,6 +43,26 @@ public class UserPokemonViewModel extends ViewModel {
                     mPokemon.postValue(pokemons);
                 }, error -> {
                     Log.d(TAG, "getThePokemonFromServer: " + error.toString());
+                });
+    }
+
+    public void getAllTheUserPokemonFromServer() {
+        repository.getAllUserPokemonFromServer().observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(userPokemons -> {
+                    mUserPokemon.postValue(userPokemons);
+                }, error -> {
+                    Log.d(TAG, "getThePokemonFromServer: " + error.toString());
+                });
+    }
+
+    public void insertOrUpdateUserPokemon(UserPokemon userPokemon) {
+        repository.insertOrUpdateUserPokemon(userPokemon).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(userPokemons -> {
+                    Log.d("kienda", "thanh cong");
+                }, error -> {
+                    Log.d(TAG, "insertOrUpdateUserPokemon: " + error.toString());
                 });
     }
 }

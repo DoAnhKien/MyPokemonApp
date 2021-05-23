@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="userPokemon"
+            type="com.example.mypokemonapp.model.UserPokemon" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_avatar"
+                image_url="@{userPokemon.pokemonUrl}"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="10dp" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/img_avatar"
+                android:text="@{userPokemon.pokemonName}"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -80,7 +80,7 @@ public class UserViewModel extends ViewModel {
         Log.d(TAG, "insertAUser: ");
         if (!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPassword) && !TextUtils.isEmpty(userRetypePassword)) {
             User user = new User(null, userEmail, userName, userPassword, Const.STRING_WORKER);
-            networkRepository.insertAUser(user)
+            networkRepository.insertOrUpdateUser(user)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(user1 -> {

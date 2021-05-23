@@ -18,6 +18,7 @@ import com.example.mypokemonapp.adapter.PokemonAdapter;
 import com.example.mypokemonapp.callback.HandleClick;
 import com.example.mypokemonapp.databinding.FragmentPokemonBinding;
 import com.example.mypokemonapp.model.Pokemon;
+import com.example.mypokemonapp.model.UserPokemon;
 import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
 
 import java.util.ArrayList;
@@ -73,10 +74,12 @@ public class PokemonFragment extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-//                int swipedPokemonPosition = viewHolder.getAdapterPosition();
-//                Pokemon pokemon = adapter.getPokemonAt(swipedPokemonPosition);
-//                viewModel.insertPokemon(pokemon);
-//                adapter.notifyDataSetChanged();
+                int swipedPokemonPosition = viewHolder.getAdapterPosition();
+                Pokemon pokemon = adapter.getPokemonAt(swipedPokemonPosition);
+                UserPokemon userPokemon = new UserPokemon(null, "kienda", pokemon.getPokemonName(), pokemon.getPokemonUrl());
+                viewModel.insertOrUpdateUserPokemon(userPokemon);
+                viewModel.getAllTheUserPokemonFromServer();
+                adapter.notifyItemChanged(swipedPokemonPosition);
             }
         };
 
