@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.mypokemonapp.aenum.LoginState;
 import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.repository.UserRepository;
+import com.example.mypokemonapp.util.Const;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class UserViewModel extends ViewModel {
     private MutableLiveData<List<User>> mListUser = new MutableLiveData<>();
     private MutableLiveData<User> currentUser = new MutableLiveData<>();
     private MutableLiveData<LoginState> loginState = new MutableLiveData<>();
-
+    private String TAG = "kienda";
 
     @ViewModelInject
     public UserViewModel(UserRepository userRepository) {
@@ -47,10 +48,10 @@ public class UserViewModel extends ViewModel {
         if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPassword)) {
             for (int i = 0; i < users.size(); i++) {
                 User user = users.get(i);
-                if (user.getUserName().equals(userName) && user.getUserPassword().equals(userPassword) && user.getUserPermission().equals("worker")) {
+                if (user.getUserName().equals(userName) && user.getUserPassword().equals(userPassword) && user.getUserPermission().equals(Const.STRING_WORKER)) {
                     loginState.setValue(LoginState.WORKER_ACCESS);
                     return;
-                } else if (user.getUserName().equals(userName) && user.getUserPassword().equals(userPassword) && user.getUserPermission().equals("admin")) {
+                } else if (user.getUserName().equals(userName) && user.getUserPassword().equals(userPassword) && user.getUserPermission().equals(Const.STRING_ADMIN)) {
                     loginState.setValue(LoginState.ADMIN_ACCESS);
                     return;
                 } else {
@@ -76,16 +77,19 @@ public class UserViewModel extends ViewModel {
     }
 
     public void insertAUser(String userEmail, String userName, String userPassword, String userRetypePassword) {
+        Log.d(TAG, "insertAUser: ");
         if (!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPassword) && !TextUtils.isEmpty(userRetypePassword)) {
-            User user = new User(userEmail, userName, userPassword, "worker", userEmail);
+            User user = new User(null, userEmail, userName, userPassword, Const.STRING_WORKER);
             userRepository.insertAUser(user)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(user1 -> {
                         currentUser.postValue(user1);
+                        Log.d(TAG, "insertAUser: " + "thanh cong");
                     }, error -> {
                         error.printStackTrace();
                         loginState.setValue(LoginState.USER_EXIST);
+                        Log.d(TAG, "insertAUser: " + "that bai");
                     });
         } else {
             loginState.setValue(LoginState.USER_NULL);

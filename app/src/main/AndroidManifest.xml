@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPokemonApp">
         <activity
+            android:name=".ui.activities.AdminActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
             android:name=".ui.activities.RegisterAccountActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity

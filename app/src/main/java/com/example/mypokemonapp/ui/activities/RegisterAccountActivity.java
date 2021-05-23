@@ -1,6 +1,7 @@
 package com.example.mypokemonapp.ui.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,12 +21,13 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class RegisterAccountActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegisterAccountActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityRegisterAccountBinding binding;
     private UserViewModel viewModel;
     private User currentUser;
     private List<User> arrUsers;
+    private String TAG = "kienda";
 
 
     @Override
@@ -71,6 +73,7 @@ public class RegisterAccountActivity extends AppCompatActivity implements View.O
     }
 
     private void checkToLogin() {
+        Log.d(TAG, "checkToLogin: ");
         viewModel.insertAUser(binding.edtEmail.getText().toString(),
                 binding.edtUserName.getText().toString(),
                 binding.edtPassword.getText().toString(),

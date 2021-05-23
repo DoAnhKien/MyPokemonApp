@@ -47,10 +47,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(this, "Tài khoản hoặc mật khẩu không tồn tại", Toast.LENGTH_SHORT).show();
                     break;
                 case ADMIN_ACCESS:
-//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+                    finish();
                     break;
                 case WORKER_ACCESS:
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
                     break;
             }
 
@@ -74,15 +76,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogin:
-                setUpForLogin();
+                checkForLogin();
                 break;
             case R.id.btnRegister:
-                startActivity(new Intent(LoginActivity.this, RegisterAccountActivity.class));
+                resetDataAndStartActivity();
                 break;
         }
     }
 
-    private void setUpForLogin() {
+    private void resetDataAndStartActivity() {
+        binding.edtUserName.setText("");
+        binding.edtUserPassword.setText("");
+        startActivity(new Intent(LoginActivity.this, RegisterAccountActivity.class));
+    }
+
+    private void checkForLogin() {
         viewModel.checkForLogin(users, binding.edtUserName.getText().toString(), binding.edtUserPassword.getText().toString());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        viewModel.getAllUserOnServer();
     }
 }

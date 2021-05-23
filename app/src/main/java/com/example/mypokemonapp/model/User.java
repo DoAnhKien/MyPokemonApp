@@ -3,12 +3,14 @@ package com.example.mypokemonapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 
 public class User {
 
-    @SerializedName("id")
+    @SerializedName("userId")
     @Expose
-    private Integer id;
+    private Integer userId;
     @SerializedName("userEmail")
     @Expose
     private String userEmail;
@@ -21,27 +23,26 @@ public class User {
     @SerializedName("userPermission")
     @Expose
     private String userPermission;
-    @SerializedName("userKey")
-    @Expose
-    private String userKey;
 
     public User() {
     }
 
-    public User(String userEmail, String userName, String userPassword, String userPermission, String userKey) {
+
+    public User(Integer userId, String userEmail, String userName, String userPassword, String userPermission) {
+        this.userId = userId;
         this.userEmail = userEmail;
         this.userName = userName;
         this.userPassword = userPassword;
         this.userPermission = userPermission;
-        this.userKey = userKey;
     }
 
-    public Integer getId() {
-        return id;
+
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUserEmail() {
@@ -76,12 +77,21 @@ public class User {
         this.userPermission = userPermission;
     }
 
-    public String getUserKey() {
-        return userKey;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return userId.equals(user.userId) &&
+                userEmail.equals(user.userEmail) &&
+                userName.equals(user.userName) &&
+                userPassword.equals(user.userPassword) &&
+                userPermission.equals(user.userPermission);
     }
 
-    public void setUserKey(String userKey) {
-        this.userKey = userKey;
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, userEmail, userName, userPassword, userPermission);
     }
-
 }
