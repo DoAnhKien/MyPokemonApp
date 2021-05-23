@@ -1,5 +1,6 @@
 package com.example.mypokemonapp.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.example.mypokemonapp.callback.HandleClick;
 import com.example.mypokemonapp.databinding.FragmentPokemonBinding;
 import com.example.mypokemonapp.model.Pokemon;
 import com.example.mypokemonapp.model.UserPokemon;
+import com.example.mypokemonapp.ui.activities.DetailActivity;
 import com.example.mypokemonapp.ui.activities.LoginActivity;
 import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
 
@@ -62,7 +64,11 @@ public class PokemonFragment extends Fragment {
         adapter.setHandleClick(new HandleClick() {
             @Override
             public void onClick(Pokemon pokemon, int position) {
-                Toast.makeText(getActivity(), pokemon.getPokemonName() + "", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("kkk", pokemon);
+                intent.putExtra("mmm", bundle);
+                startActivity(intent);
             }
         });
     }
