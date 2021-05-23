@@ -18,7 +18,7 @@ import com.example.mypokemonapp.adapter.PokemonListAdapter;
 import com.example.mypokemonapp.callback.HandleClick;
 import com.example.mypokemonapp.databinding.FragmentFavoriteBinding;
 import com.example.mypokemonapp.model.Pokemon;
-import com.example.mypokemonapp.viewmodel.PokemonViewModel;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class FavoriteFragment extends Fragment {
         return INSTANCE;
     }
 
-    private PokemonViewModel viewModel;
+//    private PokemonViewModel viewModel;
     private List<Pokemon> mFavorites;
     //    private PokemonAdapter adapter;
     private PokemonListAdapter adapter;
@@ -44,44 +44,44 @@ public class FavoriteFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false);
-        mFavorites = new ArrayList<>();
-        adapter = new PokemonListAdapter();
-        binding.rvFavorite.setAdapter(adapter);
-        viewModel = new ViewModelProvider(requireActivity()).get(PokemonViewModel.class);
-        viewModel.getFavoritePokemonList().observe(getViewLifecycleOwner(), pokemons -> {
-            adapter.submitList(pokemons);
-        });
-        viewModel.getFavoritePokemon();
-        setUpItemTouchHelper();
-        listenerTheEvent();
+//        mFavorites = new ArrayList<>();
+//        adapter = new PokemonListAdapter();
+//        binding.rvFavorite.setAdapter(adapter);
+//        viewModel = new ViewModelProvider(requireActivity()).get(PokemonViewModel.class);
+//        viewModel.getFavoritePokemonList().observe(getViewLifecycleOwner(), pokemons -> {
+//            adapter.submitList(pokemons);
+//        });
+//        viewModel.getFavoritePokemon();
+//        setUpItemTouchHelper();
+//        listenerTheEvent();
         return binding.getRoot();
     }
 
-    private void listenerTheEvent() {
-        adapter.setHandleClick(new HandleClick() {
-            @Override
-            public void onClick(Pokemon pokemon, int position) {
-                Toast.makeText(getActivity(), pokemon.getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void setUpItemTouchHelper() {
-        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.START | ItemTouchHelper.END) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int swipedPokemonPosition = viewHolder.getAdapterPosition();
-                Pokemon pokemon = adapter.getCurrentList().get(swipedPokemonPosition);
-                viewModel.deletePokemon(pokemon.getName());
-                adapter.notifyDataSetChanged();
-            }
-        };
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
-        itemTouchHelper.attachToRecyclerView(binding.rvFavorite);
-    }
+//    private void listenerTheEvent() {
+//        adapter.setHandleClick(new HandleClick() {
+//            @Override
+//            public void onClick(Pokemon pokemon, int position) {
+//                Toast.makeText(getActivity(), pokemon.getName(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//
+//    private void setUpItemTouchHelper() {
+//        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.START | ItemTouchHelper.END) {
+//            @Override
+//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//                int swipedPokemonPosition = viewHolder.getAdapterPosition();
+//                Pokemon pokemon = adapter.getCurrentList().get(swipedPokemonPosition);
+//                viewModel.deletePokemon(pokemon.getName());
+//                adapter.notifyDataSetChanged();
+//            }
+//        };
+//        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+//        itemTouchHelper.attachToRecyclerView(binding.rvFavorite);
+//    }
 }

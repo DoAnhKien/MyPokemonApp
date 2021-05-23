@@ -1,7 +1,7 @@
 package com.example.mypokemonapp.repository;
 
 
-
+import com.example.mypokemonapp.model.Pokemon;
 import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.network.NetworkService;
 
@@ -20,6 +20,8 @@ public class NetworkRepository {
         this.services = services;
     }
 
+    // user
+
     public Observable<List<User>> getAllUser() {
         return services.getAllUser();
     }
@@ -28,5 +30,10 @@ public class NetworkRepository {
         return services.insertAUser(user);
     }
 
+    // pokemon
+
+    public Observable<List<Pokemon>> getAllPokemon() {
+        return services.getAllPokemon();
+    }
 
 }

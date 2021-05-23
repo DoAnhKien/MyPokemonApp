@@ -19,7 +19,7 @@
 
             <ImageView
                 android:id="@+id/img_avatar"
-                image_url="@{pokemon.url}"
+                image_url="@{pokemon.pokemonUrl}"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="10dp" />
@@ -31,7 +31,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/img_avatar"
-                android:text="@{pokemon.name}"
+                android:text="@{pokemon.pokemonName}"
                 android:textStyle="bold" />
         </RelativeLayout>
 

@@ -1,61 +1,51 @@
 package com.example.mypokemonapp.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-import java.util.Objects;
-
-@Entity(tableName = "favorite_table")
 public class Pokemon {
 
-    @PrimaryKey(autoGenerate = true)
-    int id;
-    String name;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("pokemonName")
+    @Expose
+    private String pokemonName;
+    @SerializedName("pokemonUrl")
+    @Expose
+    private String pokemonUrl;
 
-    String url;
-
-    public Pokemon(String name, String url) {
-        this.name = name;
-        this.url = url;
+    public Pokemon() {
     }
 
-    public String getName() {
-        return name;
+    public Pokemon(Integer id, String pokemonName, String pokemonUrl) {
+        this.id = id;
+        this.pokemonName = pokemonName;
+        this.pokemonUrl = pokemonUrl;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pokemon pokemon = (Pokemon) o;
-        return id == pokemon.id &&
-                name.equals(pokemon.name) &&
-                url.equals(pokemon.url);
+    public String getPokemonName() {
+        return pokemonName;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, url);
+    public void setPokemonName(String pokemonName) {
+        this.pokemonName = pokemonName;
+    }
+
+    public String getPokemonUrl() {
+        return pokemonUrl;
+    }
+
+    public void setPokemonUrl(String pokemonUrl) {
+        this.pokemonUrl = pokemonUrl;
     }
 }
