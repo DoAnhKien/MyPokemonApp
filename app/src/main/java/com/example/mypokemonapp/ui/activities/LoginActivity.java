@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private ActivityLoginBinding binding;
     private List<User> users;
-    private UserViewModel viewModel;
+    public static UserViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

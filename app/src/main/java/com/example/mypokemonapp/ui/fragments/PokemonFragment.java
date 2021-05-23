@@ -1,6 +1,7 @@
 package com.example.mypokemonapp.ui.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.example.mypokemonapp.callback.HandleClick;
 import com.example.mypokemonapp.databinding.FragmentPokemonBinding;
 import com.example.mypokemonapp.model.Pokemon;
 import com.example.mypokemonapp.model.UserPokemon;
+import com.example.mypokemonapp.ui.activities.LoginActivity;
 import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
 
 import java.util.ArrayList;
@@ -74,12 +76,14 @@ public class PokemonFragment extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int swipedPokemonPosition = viewHolder.getAdapterPosition();
-                Pokemon pokemon = adapter.getPokemonAt(swipedPokemonPosition);
-                UserPokemon userPokemon = new UserPokemon(null, "kienda", pokemon.getPokemonName(), pokemon.getPokemonUrl());
-                viewModel.insertOrUpdateUserPokemon(userPokemon);
-                viewModel.getAllTheUserPokemonFromServer();
-                adapter.notifyItemChanged(swipedPokemonPosition);
+                LoginActivity.viewModel.getUserLogin().observe(getActivity(), user -> {
+                    int swipedPokemonPosition = viewHolder.getAdapterPosition();
+                    Pokemon pokemon = adapter.getPokemonAt(swipedPokemonPosition);
+                    UserPokemon userPokemon = new UserPokemon(null, user.getUserEmail(), pokemon.getPokemonName(), pokemon.getPokemonUrl());
+                    viewModel.insertOrUpdateUserPokemon(userPokemon);
+                    viewModel.getAllTheUserPokemonFromServer();
+                    adapter.notifyItemChanged(swipedPokemonPosition);
+                });
             }
         };
 

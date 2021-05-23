@@ -24,6 +24,7 @@ public class UserViewModel extends ViewModel {
     private MutableLiveData<List<User>> mListUser = new MutableLiveData<>();
     private MutableLiveData<User> currentUser = new MutableLiveData<>();
     private MutableLiveData<LoginState> loginState = new MutableLiveData<>();
+    private MutableLiveData<User> userLogin = new MutableLiveData<>();
     private String TAG = "kienda";
 
     @ViewModelInject
@@ -39,6 +40,9 @@ public class UserViewModel extends ViewModel {
         return currentUser;
     }
 
+    public MutableLiveData<User> getUserLogin() {
+        return userLogin;
+    }
 
     public MutableLiveData<LoginState> getLoginState() {
         return loginState;
@@ -50,6 +54,7 @@ public class UserViewModel extends ViewModel {
                 User user = users.get(i);
                 if (user.getUserName().equals(userName) && user.getUserPassword().equals(userPassword) && user.getUserPermission().equals(Const.STRING_WORKER)) {
                     loginState.setValue(LoginState.WORKER_ACCESS);
+                    userLogin.postValue(user);
                     return;
                 } else if (user.getUserName().equals(userName) && user.getUserPassword().equals(userPassword) && user.getUserPermission().equals(Const.STRING_ADMIN)) {
                     loginState.setValue(LoginState.ADMIN_ACCESS);

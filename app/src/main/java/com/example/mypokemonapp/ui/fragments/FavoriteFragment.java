@@ -22,6 +22,7 @@ import com.example.mypokemonapp.callback.HandleClick;
 import com.example.mypokemonapp.databinding.FragmentFavoriteBinding;
 import com.example.mypokemonapp.model.Pokemon;
 import com.example.mypokemonapp.model.UserPokemon;
+import com.example.mypokemonapp.ui.activities.LoginActivity;
 import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
 import com.example.mypokemonapp.viewmodel.UserViewModel;
 
@@ -41,10 +42,12 @@ public class FavoriteFragment extends Fragment {
     }
 
     private UserPokemonViewModel viewModel;
+
     private List<Pokemon> mFavorites;
     //    private PokemonAdapter adapter;
     private UserPokemonAdapter adapter;
     private FragmentFavoriteBinding binding;
+    private List<UserPokemon> mUserPokemons = new ArrayList<>();
 
     @Nullable
     @Override
@@ -55,9 +58,16 @@ public class FavoriteFragment extends Fragment {
         binding.rvFavorite.setAdapter(adapter);
         viewModel = new ViewModelProvider(requireActivity()).get(UserPokemonViewModel.class);
         viewModel.getmUserPokemon().observe(getViewLifecycleOwner(), userPokemons -> {
-            adapter.submitList(userPokemons);
-            Log.d("kienda", userPokemons.size() + "");
+            LoginActivity.viewModel.getUserLogin().observe(getActivity(), user -> {
+                for (int i = 0; i < userPokemons.size(); i++) {
+                    if (userPokemons.get(i).getUserEmail().equals(user.getUserEmail())) {
+                        mUserPokemons.add(userPokemons.get(i));
+                    }
+                }
+                adapter.submitList(mUserPokemons);
+            });
         });
+
         viewModel.getAllTheUserPokemonFromServer();
         setUpItemTouchHelper();
         listenerTheEvent();
