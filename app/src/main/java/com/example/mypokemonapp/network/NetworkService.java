@@ -22,6 +22,9 @@ public interface NetworkService {
     @POST("user/add")
     Observable<User> insertOrUpdateUser(@Body User user);
 
+    @POST("user/delete/{id}")
+    Observable<User> deleteUserById(@Path("id") int id);
+
     // user-pokemon
     @GET("user-pokemon/all")
     Observable<List<UserPokemon>> getAllUserPokemon();
@@ -33,6 +36,7 @@ public interface NetworkService {
     Observable<UserPokemon> deleteUserPokemon(@Path("id") int id);
 
     // pokemon
+
     @GET("pokemon/all")
     Observable<List<Pokemon>> getAllPokemon();
 

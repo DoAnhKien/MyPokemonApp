@@ -101,6 +101,16 @@ public class UserViewModel extends ViewModel {
         }
     }
 
+    public void deleteUserById(int id) {
+        networkRepository.deleteUserById(id).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(user -> {
+                    Log.d("kienda", "thanh cong");
+                }, error -> {
+                    Log.d("kienda", "that bai" + error.toString());
+                });
+    }
+
 }
 
 
