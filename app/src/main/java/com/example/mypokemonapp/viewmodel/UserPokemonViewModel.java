@@ -65,4 +65,14 @@ public class UserPokemonViewModel extends ViewModel {
                     Log.d(TAG, "insertOrUpdateUserPokemon: " + error.toString());
                 });
     }
+
+    public void deleteUserPokemon(int id) {
+        repository.deleteUserPokemon(id).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(userPokemons -> {
+                    Log.d("kienda", "thanh cong");
+                }, error -> {
+                    Log.d("kienda", "that bai");
+                });
+    }
 }

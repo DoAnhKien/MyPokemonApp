@@ -77,10 +77,11 @@ public class FavoriteFragment extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-//                int swipedPokemonPosition = viewHolder.getAdapterPosition();
-//                Pokemon pokemon = adapter.getCurrentList().get(swipedPokemonPosition);
-//                viewModel.deletePokemon(pokemon.getName());
-                adapter.notifyDataSetChanged();
+                int swipedPokemonPosition = viewHolder.getAdapterPosition();
+                UserPokemon userPokemon = adapter.getCurrentList().get(swipedPokemonPosition);
+                viewModel.deleteUserPokemon(userPokemon.getId());
+                adapter.notifyItemChanged(swipedPokemonPosition);
+                viewModel.getAllTheUserPokemonFromServer();
             }
         };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);

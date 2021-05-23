@@ -39,6 +39,10 @@ public class NetworkRepository {
         return services.insertOrUpdateUserPokemon(userPokemon);
     }
 
+    public Observable<UserPokemon> deleteUserPokemon(int id) {
+        return services.deleteUserPokemon(id);
+    }
+
     // pokemon
     public Observable<List<Pokemon>> getAllPokemon() {
         return services.getAllPokemon();

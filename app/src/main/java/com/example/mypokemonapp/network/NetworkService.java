@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface NetworkService {
 
@@ -25,9 +26,11 @@ public interface NetworkService {
     @GET("user-pokemon/all")
     Observable<List<UserPokemon>> getAllUserPokemon();
 
-
     @POST("user-pokemon/add")
     Observable<UserPokemon> insertOrUpdateUserPokemon(@Body UserPokemon userPokemon);
+
+    @POST("user-pokemon/delete/{id}")
+    Observable<UserPokemon> deleteUserPokemon(@Path("id") int id);
 
     // pokemon
     @GET("pokemon/all")
