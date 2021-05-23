@@ -2,6 +2,8 @@ package com.example.mypokemonapp.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -33,6 +35,7 @@ public class UserPokemonAdapter extends ListAdapter<UserPokemon, UserPokemonAdap
         holder.binding.setUserPokemon(getItem(position));
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         ItemUserPokemonBinding binding;
 
@@ -54,6 +57,5 @@ public class UserPokemonAdapter extends ListAdapter<UserPokemon, UserPokemonAdap
             return oldItem.equals(newItem);
         }
     };
-
 
 }
