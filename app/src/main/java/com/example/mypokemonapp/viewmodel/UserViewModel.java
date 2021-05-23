@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.mypokemonapp.aenum.LoginState;
 import com.example.mypokemonapp.model.User;
-import com.example.mypokemonapp.repository.UserRepository;
+import com.example.mypokemonapp.repository.NetworkRepository;
 import com.example.mypokemonapp.util.Const;
 
 import java.util.List;
@@ -20,15 +20,15 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class UserViewModel extends ViewModel {
 
-    private UserRepository userRepository;
+    private NetworkRepository networkRepository;
     private MutableLiveData<List<User>> mListUser = new MutableLiveData<>();
     private MutableLiveData<User> currentUser = new MutableLiveData<>();
     private MutableLiveData<LoginState> loginState = new MutableLiveData<>();
     private String TAG = "kienda";
 
     @ViewModelInject
-    public UserViewModel(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserViewModel(NetworkRepository networkRepository) {
+        this.networkRepository = networkRepository;
     }
 
     public MutableLiveData<List<User>> getAllUser() {
@@ -66,7 +66,7 @@ public class UserViewModel extends ViewModel {
 
 
     public void getAllUserOnServer() {
-        userRepository.getAllUser().observeOn(AndroidSchedulers.mainThread())
+        networkRepository.getAllUser().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(users -> {
                     mListUser.postValue(users);
@@ -80,7 +80,7 @@ public class UserViewModel extends ViewModel {
         Log.d(TAG, "insertAUser: ");
         if (!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPassword) && !TextUtils.isEmpty(userRetypePassword)) {
             User user = new User(null, userEmail, userName, userPassword, Const.STRING_WORKER);
-            userRepository.insertAUser(user)
+            networkRepository.insertAUser(user)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(user1 -> {

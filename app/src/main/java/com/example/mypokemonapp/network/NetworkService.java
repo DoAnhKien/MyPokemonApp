@@ -11,7 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface DatabaseService {
+public interface NetworkService {
 
     @GET("user/all")
     Observable<List<User>> getAllUser();

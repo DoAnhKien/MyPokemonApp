@@ -3,7 +3,7 @@ package com.example.mypokemonapp.repository;
 
 
 import com.example.mypokemonapp.model.User;
-import com.example.mypokemonapp.network.DatabaseService;
+import com.example.mypokemonapp.network.NetworkService;
 
 import java.util.List;
 
@@ -11,12 +11,12 @@ import javax.inject.Inject;
 
 import io.reactivex.rxjava3.core.Observable;
 
-public class UserRepository {
+public class NetworkRepository {
 
-    private DatabaseService services;
+    private NetworkService services;
 
     @Inject
-    public UserRepository(DatabaseService services) {
+    public NetworkRepository(NetworkService services) {
         this.services = services;
     }
 

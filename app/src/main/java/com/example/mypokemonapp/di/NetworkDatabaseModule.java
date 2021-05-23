@@ -1,7 +1,7 @@
 package com.example.mypokemonapp.di;
 
 
-import com.example.mypokemonapp.network.DatabaseService;
+import com.example.mypokemonapp.network.NetworkService;
 import com.example.mypokemonapp.util.Const;
 
 import javax.inject.Singleton;
@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 @InstallIn(ApplicationComponent.class)
-public class RemoteDatabaseModule {
+public class NetworkDatabaseModule {
     @Singleton
     @Provides
     public static Retrofit provideRemoteDatabaseModule() {
@@ -28,7 +28,7 @@ public class RemoteDatabaseModule {
     }
 
     @Provides
-    public static DatabaseService provideDatabaseService(Retrofit retrofit) {
-        return retrofit.create(DatabaseService.class);
+    public static NetworkService provideDatabaseService(Retrofit retrofit) {
+        return retrofit.create(NetworkService.class);
     }
 }

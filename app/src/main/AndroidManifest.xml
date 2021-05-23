@@ -21,18 +21,20 @@
         <activity
             android:name=".ui.activities.LoginActivity"
             android:theme="@style/Theme.Design.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activities.DetailActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".ui.activities.MainActivity"
-            android:configChanges="screenSize|orientation|screenLayout|navigation" />
+            android:configChanges="screenSize|orientation|screenLayout|navigation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
