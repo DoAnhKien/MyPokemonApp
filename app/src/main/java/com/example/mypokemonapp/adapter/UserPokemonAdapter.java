@@ -14,8 +14,7 @@ import com.example.mypokemonapp.databinding.ItemUserBinding;
 import com.example.mypokemonapp.databinding.ItemUserPokemonBinding;
 import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.model.UserPokemon;
-
-import org.jetbrains.annotations.NotNull;
+import com.google.firebase.database.annotations.NotNull;
 
 public class UserPokemonAdapter extends ListAdapter<UserPokemon, UserPokemonAdapter.ViewHolder> {
 

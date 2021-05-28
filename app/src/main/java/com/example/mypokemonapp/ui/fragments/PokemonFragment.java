@@ -87,8 +87,8 @@ public class PokemonFragment extends Fragment {
                     Pokemon pokemon = adapter.getPokemonAt(swipedPokemonPosition);
                     UserPokemon userPokemon = new UserPokemon(null, user.getUserEmail(), pokemon.getPokemonName(), pokemon.getPokemonUrl());
                     viewModel.insertOrUpdateUserPokemon(userPokemon);
-                    viewModel.getAllTheUserPokemonFromServer();
                     adapter.notifyItemChanged(swipedPokemonPosition);
+                    viewModel.getAllTheUserPokemonFromServer();
                 });
             }
         };
