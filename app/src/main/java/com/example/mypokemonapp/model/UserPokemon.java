@@ -3,6 +3,8 @@ package com.example.mypokemonapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class UserPokemon {
@@ -76,5 +78,49 @@ public class UserPokemon {
     @Override
     public int hashCode() {
         return Objects.hash(id, userEmail, pokemonName, pokemonUrl);
+    }
+
+    public boolean insertAUserPokemon(int id, String currentUserEmail, String currentPokemonName, String currentPokemonUrl) {
+        User tempUserA = new User(1, "kienda", "1", "1", "1");
+        User tempUserB = new User(2, "kienda", "2", "2", "2");
+        List<User> mUsers = new ArrayList<>();
+        mUsers.add(tempUserA);
+        mUsers.add(tempUserB);
+        if (!currentUserEmail.equals("") && !currentPokemonName.equals("") && !currentPokemonUrl.equals("")) {
+            for (int i = 0; i < mUsers.size(); i++) {
+                if (mUsers.get(i).getUserEmail().equals(currentUserEmail)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean updateAUser(UserPokemon userPokemon) {
+        User tempUserA = new User(1, "kienda", "1", "1", "1");
+        User tempUserB = new User(2, "kienda", "2", "2", "2");
+        List<User> mUsers = new ArrayList<>();
+        mUsers.add(tempUserA);
+        mUsers.add(tempUserB);
+        for (int i = 0; i < mUsers.size(); i++) {
+            if (mUsers.get(i).getUserEmail() == userPokemon.getUserEmail()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteAUser(UserPokemon userPokemon) {
+        User tempUserA = new User(1, "kienda", "1", "1", "1");
+        User tempUserB = new User(2, "kienda", "2", "2", "2");
+        List<User> mUsers = new ArrayList<>();
+        mUsers.add(tempUserA);
+        mUsers.add(tempUserB);
+        for (int i = 0; i < mUsers.size(); i++) {
+            if (mUsers.get(i).getUserEmail().equals(userPokemon.getUserEmail())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

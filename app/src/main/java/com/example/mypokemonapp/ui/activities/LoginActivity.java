@@ -2,6 +2,7 @@ package com.example.mypokemonapp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         initViews();
         observeData();
+        User user = new User();
+
     }
 
     private void observeData() {

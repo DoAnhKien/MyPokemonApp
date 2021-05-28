@@ -115,7 +115,6 @@ class PokemonTest {
         assertEquals("kien123", userPokemon.getUserEmail());
         assertEquals("kien123", userPokemon.getPokemonName());
         assertEquals("kien123", userPokemon.getPokemonUrl());
-
     }
 
 

@@ -1,9 +1,19 @@
 package com.example.mypokemonapp.model;
 
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.example.mypokemonapp.aenum.LoginState;
+import com.example.mypokemonapp.util.Const;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
 public class User {
@@ -94,4 +104,53 @@ public class User {
     public int hashCode() {
         return Objects.hash(userId, userEmail, userName, userPassword, userPermission);
     }
+
+    public boolean insertAUser(int currentUserId, String userEmail, String userName, String userPassword, String userRetypePassword) {
+        User tempUserA = new User(1, "1", "1", "1", "1");
+        User tempUserB = new User(2, "2", "2", "2", "2");
+        List<User> mUsers = new ArrayList<>();
+        mUsers.add(tempUserA);
+        mUsers.add(tempUserB);
+        if (!userEmail.equals("") && !userName.equals("") && !userPassword.equals("") && !userRetypePassword.equals("")) {
+            if (userPassword.equals(userRetypePassword)) {
+                for (int i = 0; i < mUsers.size(); i++) {
+                    if (mUsers.get(i).getUserEmail().equals(userEmail) || mUsers.get(i).getUserId() == currentUserId) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean updateAUser(User user) {
+        User tempUserA = new User(1, "1", "1", "1", "1");
+        User tempUserB = new User(2, "2", "2", "2", "2");
+        List<User> mUsers = new ArrayList<>();
+        mUsers.add(tempUserA);
+        mUsers.add(tempUserB);
+        for (int i = 0; i < mUsers.size(); i++) {
+            if (mUsers.get(i).getUserId() == user.getUserId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteAUser(User user) {
+        User tempUserA = new User(1, "1", "1", "1", "1");
+        User tempUserB = new User(2, "2", "2", "2", "2");
+        List<User> mUsers = new ArrayList<>();
+        mUsers.add(tempUserA);
+        mUsers.add(tempUserB);
+        for (int i = 0; i < mUsers.size(); i++) {
+            if (mUsers.get(i).getUserId() == user.getUserId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
