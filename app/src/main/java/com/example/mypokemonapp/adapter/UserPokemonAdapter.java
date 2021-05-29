@@ -16,6 +16,8 @@ import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.model.UserPokemon;
 import com.google.firebase.database.annotations.NotNull;
 
+import java.util.List;
+
 public class UserPokemonAdapter extends ListAdapter<UserPokemon, UserPokemonAdapter.ViewHolder> {
 
     public UserPokemonAdapter() {
@@ -34,6 +36,10 @@ public class UserPokemonAdapter extends ListAdapter<UserPokemon, UserPokemonAdap
         holder.binding.setUserPokemon(getItem(position));
     }
 
+    @Override
+    public void onCurrentListChanged(@NonNull @org.jetbrains.annotations.NotNull List<UserPokemon> previousList, @NonNull @org.jetbrains.annotations.NotNull List<UserPokemon> currentList) {
+        super.onCurrentListChanged(previousList, currentList);
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ItemUserPokemonBinding binding;

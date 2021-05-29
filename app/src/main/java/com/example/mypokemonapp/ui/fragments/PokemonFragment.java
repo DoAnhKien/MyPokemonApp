@@ -89,6 +89,7 @@ public class PokemonFragment extends Fragment {
                     viewModel.insertOrUpdateUserPokemon(userPokemon);
                     adapter.notifyItemChanged(swipedPokemonPosition);
                     viewModel.getAllTheUserPokemonFromServer();
+//                    FavoriteFragment.adapter.notifyItemInserted();
                 });
             }
         };
