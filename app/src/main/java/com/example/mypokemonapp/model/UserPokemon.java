@@ -96,7 +96,21 @@ public class UserPokemon {
         return false;
     }
 
-    public boolean updateAUser(UserPokemon userPokemon) {
+    public boolean findAUserPokemon(int userPokemonId) {
+        UserPokemon tempUserPokemonA = new UserPokemon(1, "1", "1", "1");
+        UserPokemon tempUserPokemonB = new UserPokemon(1, "1", "1", "1");
+        List<UserPokemon> mUserPokemon = new ArrayList<>();
+        mUserPokemon.add(tempUserPokemonA);
+        mUserPokemon.add(tempUserPokemonB);
+        for (int i = 0; i < mUserPokemon.size(); i++) {
+            if (mUserPokemon.get(i).getId() == userPokemonId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean updateAUserPokemon(UserPokemon userPokemon) {
         User tempUserA = new User(1, "kienda", "1", "1", "1");
         User tempUserB = new User(2, "kienda", "2", "2", "2");
         List<User> mUsers = new ArrayList<>();
@@ -110,7 +124,7 @@ public class UserPokemon {
         return false;
     }
 
-    public boolean deleteAUser(UserPokemon userPokemon) {
+    public boolean deleteAUserPokemon(UserPokemon userPokemon) {
         User tempUserA = new User(1, "kienda", "1", "1", "1");
         User tempUserB = new User(2, "kienda", "2", "2", "2");
         List<User> mUsers = new ArrayList<>();

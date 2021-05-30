@@ -124,6 +124,20 @@ public class User {
         return false;
     }
 
+    public boolean findAUser(int userId) {
+        User tempUserA = new User(1, "1", "1", "1", "1");
+        User tempUserB = new User(2, "2", "2", "2", "2");
+        List<User> mUsers = new ArrayList<>();
+        mUsers.add(tempUserA);
+        mUsers.add(tempUserB);
+        for (int i = 0; i < mUsers.size(); i++) {
+            if (mUsers.get(i).getUserId() == userId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean updateAUser(User user) {
         User tempUserA = new User(1, "1", "1", "1", "1");
         User tempUserB = new User(2, "2", "2", "2", "2");
