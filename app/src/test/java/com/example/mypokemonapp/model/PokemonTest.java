@@ -1,21 +1,6 @@
 package com.example.mypokemonapp.model;
 
-import android.app.Activity;
-import android.view.View;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import com.example.mypokemonapp.network.NetworkService;
-import com.example.mypokemonapp.repository.NetworkRepository;
-import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
-import com.example.mypokemonapp.viewmodel.UserViewModel;
-
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import io.reactivex.rxjava3.core.Observable;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class PokemonTest {
