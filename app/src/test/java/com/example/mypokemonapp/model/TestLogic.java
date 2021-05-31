@@ -13,7 +13,6 @@ public class TestLogic {
         assertEquals(false, isSuccess);
     }
 
-
     @Test
     void testTheUpdateUser() {
         User user = new User();
@@ -31,7 +30,7 @@ public class TestLogic {
     @Test
     void testTheFindTheUser() {
         User user = new User();
-        boolean isSuccess = user.findAUser(2);
+        boolean isSuccess = user.findAUser(3);
         assertEquals(false, isSuccess);
     }
 
