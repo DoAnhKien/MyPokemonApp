@@ -88,10 +88,11 @@ public class UserPokemon {
         mUsers.add(tempUserB);
         if (!currentUserEmail.equals("") && !currentPokemonName.equals("") && !currentPokemonUrl.equals("")) {
             for (int i = 0; i < mUsers.size(); i++) {
-                if (mUsers.get(i).getUserEmail().equals(currentUserEmail)) {
+                if (!mUsers.get(i).getUserEmail().equals(currentUserEmail)) {
                     return true;
                 }
             }
+            return false;
         }
         return false;
     }

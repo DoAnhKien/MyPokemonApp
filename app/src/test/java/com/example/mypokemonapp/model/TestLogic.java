@@ -9,7 +9,7 @@ public class TestLogic {
     @Test
     void testTheInsertUser() {
         User user = new User();
-        boolean isSuccess = user.insertAUser(10, "2", "3", "4", "4");
+        boolean isSuccess = user.insertAUser(10, "3", "3", "4", "4");
         assertEquals(false, isSuccess);
     }
 
@@ -51,7 +51,7 @@ public class TestLogic {
     @Test
     void testTheDeletePokemon() {
         UserPokemon user = new UserPokemon();
-        boolean isSuccess = user.updateAUserPokemon(new UserPokemon(1, "kienda11", "kien", "kien"));
+        boolean isSuccess = user.deleteAUserPokemon(new UserPokemon(1, "kienda11", "kien", "kien"));
         assertEquals(false, isSuccess);
     }
 
