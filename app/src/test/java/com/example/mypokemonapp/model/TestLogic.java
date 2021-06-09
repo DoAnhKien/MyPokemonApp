@@ -1,8 +1,7 @@
 package com.example.mypokemonapp.model;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestLogic {
 
@@ -10,7 +9,7 @@ public class TestLogic {
     void testTheInsertUser() {
         User user = new User();
         boolean isSuccess = user.insertAUser(10, "3", "3", "4", "4");
-        assertEquals(false, isSuccess);
+        assertEquals(true, isSuccess);
     }
 
     @Test
@@ -38,7 +37,7 @@ public class TestLogic {
     void testTheInsertUserPokemon() {
         UserPokemon user = new UserPokemon();
         boolean isSuccess = user.insertAUserPokemon(1, "kienda1", "123", "123");
-        assertEquals(false, isSuccess);
+        assertEquals(true, isSuccess);
     }
 
     @Test
@@ -49,9 +48,9 @@ public class TestLogic {
     }
 
     @Test
-    void testTheDeletePokemon() {
-        UserPokemon user = new UserPokemon();
-        boolean isSuccess = user.deleteAUserPokemon(new UserPokemon(1, "kienda11", "kien", "kien"));
+    void testTheDeleteUserPokemon() {
+        UserPokemon userPokemon = new UserPokemon();
+        boolean isSuccess = userPokemon.deleteAUserPokemon(new UserPokemon(1, "kienda11", "kien", "kien"));
         assertEquals(false, isSuccess);
     }
 
