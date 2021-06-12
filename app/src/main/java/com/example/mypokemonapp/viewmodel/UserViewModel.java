@@ -59,8 +59,6 @@ public class UserViewModel extends ViewModel {
                 } else if (user.getUserName().equals(userName) && user.getUserPassword().equals(userPassword) && user.getUserPermission().equals(Const.STRING_ADMIN)) {
                     loginState.setValue(LoginState.ADMIN_ACCESS);
                     return;
-                } else {
-
                 }
             }
         } else if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(userPassword)) {
@@ -75,7 +73,6 @@ public class UserViewModel extends ViewModel {
                 .subscribeOn(Schedulers.io())
                 .subscribe(users -> {
                     mListUser.postValue(users);
-                    Log.d("kienda", users.size() + "");
                 }, error -> {
                     error.printStackTrace();
                 });
@@ -90,11 +87,9 @@ public class UserViewModel extends ViewModel {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(user1 -> {
                         currentUser.postValue(user1);
-                        Log.d(TAG, "insertAUser: " + "thanh cong");
                     }, error -> {
                         error.printStackTrace();
                         loginState.setValue(LoginState.USER_EXIST);
-                        Log.d(TAG, "insertAUser: " + "that bai");
                     });
         } else {
             loginState.setValue(LoginState.USER_NULL);
@@ -105,9 +100,9 @@ public class UserViewModel extends ViewModel {
         networkRepository.deleteUserById(id).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(user -> {
-                    Log.d("kienda", "thanh cong");
+
                 }, error -> {
-                    Log.d("kienda", "that bai" + error.toString());
+
                 });
     }
 

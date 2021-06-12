@@ -42,7 +42,6 @@ public class UserPokemonViewModel extends ViewModel {
                 .subscribe(pokemons -> {
                     mPokemon.postValue(pokemons);
                 }, error -> {
-                    Log.d(TAG, "getThePokemonFromServer: " + error.toString());
                 });
     }
 
@@ -52,7 +51,6 @@ public class UserPokemonViewModel extends ViewModel {
                 .subscribe(userPokemons -> {
                     mUserPokemon.postValue(userPokemons);
                 }, error -> {
-                    Log.d(TAG, "getThePokemonFromServer: " + error.toString());
                 });
     }
 
@@ -60,9 +58,7 @@ public class UserPokemonViewModel extends ViewModel {
         repository.insertOrUpdateUserPokemon(userPokemon).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(userPokemons -> {
-                    Log.d("kienda", "thanh cong");
                 }, error -> {
-                    Log.d(TAG, "insertOrUpdateUserPokemon: " + error.toString());
                 });
     }
 
@@ -70,9 +66,7 @@ public class UserPokemonViewModel extends ViewModel {
         repository.deleteUserPokemon(id).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(userPokemons -> {
-                    Log.d("kienda", "thanh cong");
                 }, error -> {
-                    Log.d("kienda", "that bai");
                 });
     }
 }

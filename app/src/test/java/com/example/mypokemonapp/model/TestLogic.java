@@ -8,7 +8,7 @@ public class TestLogic {
     @Test
     void testTheInsertUser() {
         User user = new User();
-        boolean isSuccess = user.insertAUser(10, "3", "3", "4", "4");
+        boolean isSuccess = user.insertAUser(3, "", "3", "4", "4");
         assertEquals(true, isSuccess);
     }
 
