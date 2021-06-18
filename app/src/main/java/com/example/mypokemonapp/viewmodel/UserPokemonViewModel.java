@@ -58,7 +58,9 @@ public class UserPokemonViewModel extends ViewModel {
         repository.insertOrUpdateUserPokemon(userPokemon).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(userPokemons -> {
+
                 }, error -> {
+
                 });
     }
 

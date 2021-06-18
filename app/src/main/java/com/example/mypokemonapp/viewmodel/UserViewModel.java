@@ -67,7 +67,6 @@ public class UserViewModel extends ViewModel {
         loginState.setValue(LoginState.USER_NOT_EXIST);
     }
 
-
     public void getAllUserOnServer() {
         networkRepository.getAllUser().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

@@ -12,31 +12,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swl_main"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.activities.MainActivity">
 
-            <LinearLayout
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                tools:context=".ui.activities.MainActivity">
+                android:layout_height="56dp"
+                app:tabBackground="@color/colorPrimary"
+                app:tabIndicator="@color/colorAccent"
+                app:tabSelectedTextColor="@android:color/white" />
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    app:tabBackground="@color/colorPrimary"
-                    app:tabIndicator="@color/colorAccent"
-                    app:tabSelectedTextColor="@android:color/white" />
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/vp_pokemon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vp_pokemon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
 
         <com.google.android.material.navigation.NavigationView

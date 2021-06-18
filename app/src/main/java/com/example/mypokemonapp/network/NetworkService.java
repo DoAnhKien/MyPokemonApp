@@ -26,6 +26,7 @@ public interface NetworkService {
     Observable<User> deleteUserById(@Path("id") int id);
 
     // user-pokemon
+
     @GET("user-pokemon/all")
     Observable<List<UserPokemon>> getAllUserPokemon();
 

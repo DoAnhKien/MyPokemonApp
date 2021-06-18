@@ -25,9 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class AdminActivity extends AppCompatActivity {
-
     private ActivityAdminBinding binding;
-
     private UserViewModel viewModel;
     private UserAdapter adapter;
     private String TAG = "kienda";

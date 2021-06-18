@@ -2,19 +2,17 @@ package com.example.mypokemonapp.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mypokemonapp.databinding.ItemUserBinding;
 import com.example.mypokemonapp.databinding.ItemUserPokemonBinding;
-import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.model.UserPokemon;
-import com.google.firebase.database.annotations.NotNull;
+
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
