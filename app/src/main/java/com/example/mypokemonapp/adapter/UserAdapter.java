@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mypokemonapp.databinding.ItemUserBinding;
 import com.example.mypokemonapp.model.User;
-import com.google.firebase.database.annotations.NotNull;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class UserAdapter extends ListAdapter<User, UserAdapter.ViewHolder> {

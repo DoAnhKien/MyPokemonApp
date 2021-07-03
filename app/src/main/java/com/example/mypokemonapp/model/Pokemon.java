@@ -8,43 +8,43 @@ import java.io.Serializable;
 public class Pokemon implements Serializable {
     @SerializedName("id")
     @Expose
-    public Integer id;
+    private Integer id;
     @SerializedName("pokemonName")
     @Expose
-    public String pokemonName;
+    private String pokemonName;
     @SerializedName("pokemonUrl")
     @Expose
-    public String pokemonUrl;
+    private String pokemonUrl;
     @SerializedName("pokemonHeight")
     @Expose
-    public String pokemonHeight;
+    private String pokemonHeight;
     @SerializedName("pokemonWeight")
     @Expose
-    public String pokemonWeight;
+    private String pokemonWeight;
     @SerializedName("pokemonNextEvolutionA")
     @Expose
-    public String pokemonNextEvolutionA;
+    private String pokemonNextEvolutionA;
     @SerializedName("pokemonNextEvolutionB")
     @Expose
-    public String pokemonNextEvolutionB;
+    private String pokemonNextEvolutionB;
     @SerializedName("pokemonWeaknessA")
     @Expose
-    public String pokemonWeaknessA;
+    private String pokemonWeaknessA;
     @SerializedName("pokemonWeaknessB")
     @Expose
-    public String pokemonWeaknessB;
+    private String pokemonWeaknessB;
     @SerializedName("pokemonWeaknessC")
     @Expose
-    public String pokemonWeaknessC;
+    private String pokemonWeaknessC;
     @SerializedName("pokemonWeaknessD")
     @Expose
-    public String pokemonWeaknessD;
+    private String pokemonWeaknessD;
     @SerializedName("pokemonTypeA")
     @Expose
-    public String pokemonTypeA;
+    private String pokemonTypeA;
     @SerializedName("pokemonTypeB")
     @Expose
-    public String pokemonTypeB;
+    private String pokemonTypeB;
 
     public Pokemon() {
     }
