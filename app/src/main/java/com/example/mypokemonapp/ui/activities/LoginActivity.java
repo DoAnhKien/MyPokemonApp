@@ -25,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-
     private ActivityLoginBinding binding;
     private List<User> users;
     public static UserViewModel viewModel;
@@ -99,7 +98,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onStart() {
-        super.onStart();
         viewModel.getAllUserOnServer();
+        super.onStart();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

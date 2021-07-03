@@ -15,14 +15,12 @@ import com.example.mypokemonapp.model.Pokemon;
 import java.util.List;
 
 public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHolder> {
-    private List<Pokemon> mPokemons;
 
+    private List<Pokemon> mPokemons;
     public PokemonAdapter(List<Pokemon> mPokemons) {
         this.mPokemons = mPokemons;
     }
-
     private HandleClick handleClick;
-
 
     public void setHandleClick(HandleClick handleClick) {
         this.handleClick = handleClick;
