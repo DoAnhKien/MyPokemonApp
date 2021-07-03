@@ -25,6 +25,8 @@ public class PokemonPagerAdapter extends FragmentPagerAdapter {
                 return PokemonFragment.getInstance();
             case 1:
                 return FavoriteFragment.getInstance();
+            default:
+                break;
         }
         return null;
     }
