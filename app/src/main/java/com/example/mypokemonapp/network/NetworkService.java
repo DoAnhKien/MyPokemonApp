@@ -14,8 +14,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface NetworkService {
-
     // user
+
     @GET("user/all")
     Observable<List<User>> getAllUser();
 
@@ -37,6 +37,7 @@ public interface NetworkService {
     Observable<UserPokemon> deleteUserPokemon(@Path("id") int id);
 
     // pokemon
+
     @GET("pokemon/all")
     Observable<List<Pokemon>> getAllPokemon();
 

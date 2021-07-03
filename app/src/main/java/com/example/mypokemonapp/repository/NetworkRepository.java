@@ -22,6 +22,7 @@ public class NetworkRepository {
     }
 
     //user
+
     public Observable<List<User>> getAllUser() {
         return services.getAllUser();
     }
@@ -35,6 +36,7 @@ public class NetworkRepository {
     }
 
     //user pokemon
+
     public Observable<List<UserPokemon>> getAllUserPokemonFromServer() {
         return services.getAllUserPokemon();
     }
@@ -48,6 +50,7 @@ public class NetworkRepository {
     }
 
     // pokemon
+
     public Observable<List<Pokemon>> getAllPokemon() {
         return services.getAllPokemon();
     }

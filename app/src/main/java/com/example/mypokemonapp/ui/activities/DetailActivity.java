@@ -21,6 +21,13 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
         initData();
+        listenerTheEvent();
+    }
+
+    private void listenerTheEvent() {
+        binding.imgBack.setOnClickListener(v -> {
+            onBackPressed();
+        });
     }
 
     private void initData() {

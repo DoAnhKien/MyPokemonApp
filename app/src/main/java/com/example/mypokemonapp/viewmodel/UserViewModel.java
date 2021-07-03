@@ -77,7 +77,7 @@ public class UserViewModel extends ViewModel {
                 });
     }
 
-    public void insertAUser(String userEmail, String userName, String userPassword, String userRetypePassword) {
+    public void insertOrUpdateAUser(String userEmail, String userName, String userPassword, String userRetypePassword) {
         Log.d(TAG, "insertAUser: ");
         if (!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPassword) && !TextUtils.isEmpty(userRetypePassword)) {
             User user = new User(null, userEmail, userName, userPassword, Const.STRING_WORKER);

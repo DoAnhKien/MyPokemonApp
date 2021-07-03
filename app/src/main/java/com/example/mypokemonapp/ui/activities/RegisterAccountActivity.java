@@ -74,7 +74,7 @@ public class RegisterAccountActivity extends AppCompatActivity implements View.O
 
     private void checkToLogin() {
         Log.d(TAG, "checkToLogin: ");
-        viewModel.insertAUser(binding.edtEmail.getText().toString(),
+        viewModel.insertOrUpdateAUser(binding.edtEmail.getText().toString(),
                 binding.edtUserName.getText().toString(),
                 binding.edtPassword.getText().toString(),
                 binding.edtRetypePassword.getText().toString());
