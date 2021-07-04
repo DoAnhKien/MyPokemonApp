@@ -59,6 +59,12 @@ public class RegisterAccountActivity extends AppCompatActivity implements View.O
                 case USER_NULL:
                     Toast.makeText(this, "Không được để trống thông tin", Toast.LENGTH_SHORT).show();
                     break;
+                case ERROR_GMAIL:
+                    Toast.makeText(this, "Gmail không đúng định dạng", Toast.LENGTH_SHORT).show();
+                    break;
+                case ERROR_PASSWORD:
+                    Toast.makeText(this, "Mật khẩu không trùng nhau", Toast.LENGTH_SHORT).show();
+                    break;
             }
         });
     }

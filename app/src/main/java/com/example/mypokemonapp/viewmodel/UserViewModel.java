@@ -87,17 +87,22 @@ public class UserViewModel extends ViewModel {
         Log.d(TAG, "insertAUser: ");
         if (!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPassword) && !TextUtils.isEmpty(userRetypePassword)) {
             if (userEmail.contains("@gmail.com")) {
-                User user = new User(null, userEmail, userName, userPassword, Const.STRING_WORKER);
-                networkRepository.insertOrUpdateUser(user)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(user1 -> {
-                            currentUser.postValue(user1);
-                        }, error -> {
-                            error.printStackTrace();
-                            loginState.setValue(LoginState.USER_EXIST);
-                        });
+                if (userPassword.equals(userRetypePassword)) {
+                    User user = new User(null, userEmail, userName, userPassword, Const.STRING_WORKER);
+                    networkRepository.insertOrUpdateUser(user)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(user1 -> {
+                                currentUser.postValue(user1);
+                            }, error -> {
+                                error.printStackTrace();
+                                loginState.setValue(LoginState.USER_EXIST);
+                            });
+                }
+                loginState.setValue(LoginState.ERROR_PASSWORD);
+                return;
             }
+            loginState.setValue(LoginState.ERROR_GMAIL);
         } else {
             loginState.setValue(LoginState.USER_NULL);
         }
