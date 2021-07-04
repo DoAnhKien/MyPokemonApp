@@ -18,9 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mypokemonapp.adapter.PokemonAdapter;
 import com.example.mypokemonapp.adapter.PokemonListAdapter;
 import com.example.mypokemonapp.adapter.UserPokemonAdapter;
+import com.example.mypokemonapp.adapter.UserPokemonAdapterA;
 import com.example.mypokemonapp.callback.HandleClick;
+import com.example.mypokemonapp.callback.HandleUserPokemonClick;
 import com.example.mypokemonapp.databinding.FragmentFavoriteBinding;
 import com.example.mypokemonapp.model.Pokemon;
+import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.model.UserPokemon;
 import com.example.mypokemonapp.ui.activities.LoginActivity;
 import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
@@ -44,13 +47,9 @@ public class FavoriteFragment extends Fragment {
     }
 
     private UserPokemonViewModel viewModel;
-    public UserViewModel parentModel;
-
-    private List<Pokemon> mFavorites;
-    //    private PokemonAdapter adapter;
-    public static UserPokemonAdapter adapter;
+    private UserPokemonAdapterA adapter;
     private FragmentFavoriteBinding binding;
-    private List<UserPokemon> mUserPokemons = new ArrayList<>();
+    private List<UserPokemon> mUserPokemons;
 
     @Nullable
     @Override
@@ -62,20 +61,22 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mFavorites = new ArrayList<>();
+        mUserPokemons = new ArrayList<>();
         setUpItemTouchHelper();
-        adapter = new UserPokemonAdapter();
+        adapter = new UserPokemonAdapterA(mUserPokemons);
         binding.rvFavorite.setAdapter(adapter);
         viewModel = new ViewModelProvider(requireActivity()).get(UserPokemonViewModel.class);
         viewModel.getmUserPokemon().observe(getViewLifecycleOwner(), userPokemons -> {
             LoginActivity.viewModel.getUserLogin().observe(getActivity(), user -> {
-                mUserPokemons.clear();
                 for (int i = 0; i < userPokemons.size(); i++) {
                     if (userPokemons.get(i).getUserEmail().equals(user.getUserEmail())) {
                         mUserPokemons.add(userPokemons.get(i));
                     }
                 }
+
+                Log.d("kien123", "onViewCreated: " + mUserPokemons.size());
                 adapter.submitList(mUserPokemons);
+
             });
         });
 
@@ -84,7 +85,19 @@ public class FavoriteFragment extends Fragment {
     }
 
     private void listenerTheEvent() {
+        adapter.setHandleUserPokemonClick(new HandleUserPokemonClick() {
+            @Override
+            public void onClick(UserPokemon userPokemon, int position) {
 
+            }
+
+            @Override
+            public void onLongClick(UserPokemon userPokemon, int position) {
+                Toast.makeText(getActivity(), "On Long Click", Toast.LENGTH_SHORT).show();
+                adapter.deleteAUserPokemon(position);
+                viewModel.deleteUserPokemon(userPokemon.getId());
+            }
+        });
     }
 
     private void setUpItemTouchHelper() {
@@ -96,15 +109,9 @@ public class FavoriteFragment extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                Log.d("mmm",mUserPokemons.size() + "");
-                Log.d("mmm1",adapter.getCurrentList().size() + "");
                 int swipedPokemonPosition = viewHolder.getAdapterPosition();
-                UserPokemon userPokemon = adapter.getCurrentList().get(swipedPokemonPosition);
-                viewModel.deleteUserPokemon(userPokemon.getId());
                 adapter.notifyItemRemoved(swipedPokemonPosition);
-                viewModel.getAllTheUserPokemonFromServer();
-                Log.d("mmm",mUserPokemons.size() + "");
-                Log.d("mmm1",adapter.getCurrentList().size() + "");
+
             }
         };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);

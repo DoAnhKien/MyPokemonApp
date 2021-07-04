@@ -49,27 +49,26 @@ public class PokemonFragment extends Fragment {
         binding = FragmentPokemonBinding.inflate(inflater, container, false);
         mPokemons = new ArrayList<>();
         adapter = new PokemonAdapter(mPokemons);
+        binding.rvPokemon.setAdapter(adapter);
+
         viewModel = new ViewModelProvider(requireActivity()).get(UserPokemonViewModel.class);
         viewModel.getmPokemon().observe(getViewLifecycleOwner(), pokemons -> {
             adapter.setData(pokemons);
         });
         viewModel.getAllThePokemonFromServer();
-        binding.rvPokemon.setAdapter(adapter);
+
         setUpItemTouchHelper();
         listenerEvent();
         return binding.getRoot();
     }
 
     private void listenerEvent() {
-        adapter.setHandleClick(new HandleClick() {
-            @Override
-            public void onClick(Pokemon pokemon, int position) {
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("kkk", pokemon);
-                intent.putExtra("mmm", bundle);
-                startActivity(intent);
-            }
+        adapter.setHandleClick((pokemon, position) -> {
+            Intent intent = new Intent(getActivity(), DetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("kkk", pokemon);
+            intent.putExtra("mmm", bundle);
+            startActivity(intent);
         });
     }
 
@@ -89,7 +88,7 @@ public class PokemonFragment extends Fragment {
                     viewModel.insertOrUpdateUserPokemon(userPokemon);
                     adapter.notifyItemChanged(swipedPokemonPosition);
                     viewModel.getAllTheUserPokemonFromServer();
-//                    FavoriteFragment.adapter.notifyItemInserted();
+
                 });
             }
         };
