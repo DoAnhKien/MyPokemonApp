@@ -71,7 +71,13 @@ public class UserViewModel extends ViewModel {
         networkRepository.getAllUser().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(users -> {
-                    mListUser.postValue(users);
+                    if (mListUser.getValue() != null) {
+                        if (mListUser.getValue().size() != users.size()) {
+                            mListUser.setValue(users);
+                        }
+                    } else {
+                        mListUser.setValue(users);
+                    }
                 }, error -> {
                     error.printStackTrace();
                 });
@@ -80,7 +86,7 @@ public class UserViewModel extends ViewModel {
     public void insertOrUpdateAUser(String userEmail, String userName, String userPassword, String userRetypePassword) {
         Log.d(TAG, "insertAUser: ");
         if (!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPassword) && !TextUtils.isEmpty(userRetypePassword)) {
-            if (userEmail.contains("@gmail.com")){
+            if (userEmail.contains("@gmail.com")) {
                 User user = new User(null, userEmail, userName, userPassword, Const.STRING_WORKER);
                 networkRepository.insertOrUpdateUser(user)
                         .subscribeOn(Schedulers.io())

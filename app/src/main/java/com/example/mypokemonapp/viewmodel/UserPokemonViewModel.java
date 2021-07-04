@@ -40,7 +40,13 @@ public class UserPokemonViewModel extends ViewModel {
         repository.getAllPokemon().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(pokemons -> {
-                    mPokemon.postValue(pokemons);
+                    if (mPokemon.getValue() != null) {
+                        if (mPokemon.getValue().size() != pokemons.size()) {
+                            mPokemon.setValue(pokemons);
+                        }
+                    } else {
+                        mPokemon.setValue(pokemons);
+                    }
                 }, error -> {
                 });
     }
@@ -49,7 +55,13 @@ public class UserPokemonViewModel extends ViewModel {
         repository.getAllUserPokemonFromServer().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(userPokemons -> {
-                    mUserPokemon.postValue(userPokemons);
+                    if (mUserPokemon.getValue() != null) {
+                        if (mUserPokemon.getValue().size() != userPokemons.size()) {
+                            mUserPokemon.setValue(userPokemons);
+                        }
+                    } else {
+                        mUserPokemon.setValue(userPokemons);
+                    }
                 }, error -> {
                 });
     }
