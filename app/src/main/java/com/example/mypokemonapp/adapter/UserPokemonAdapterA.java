@@ -27,7 +27,9 @@ public class UserPokemonAdapterA extends RecyclerView.Adapter<UserPokemonAdapter
     }
 
 
-    public void submitList(List<UserPokemon> mUserPokemon) {
+    public void submitList(List<UserPokemon> userPokemonList) {
+        mUserPokemon.clear();
+        mUserPokemon.addAll(userPokemonList);
         notifyDataSetChanged();
     }
 

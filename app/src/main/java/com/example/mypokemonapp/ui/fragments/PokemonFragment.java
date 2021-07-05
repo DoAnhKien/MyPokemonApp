@@ -35,6 +35,7 @@ public class PokemonFragment extends Fragment {
     private List<Pokemon> mPokemons;
     private PokemonAdapter adapter;
     private FragmentPokemonBinding binding;
+    private String TAG = "kienda";
 
     public static PokemonFragment getInstance() {
         if (INSTANCE == null) {
@@ -56,6 +57,7 @@ public class PokemonFragment extends Fragment {
             adapter.setData(pokemons);
         });
         viewModel.getAllThePokemonFromServer();
+        viewModel.getAllTheUserPokemonFromServer();
 
         setUpItemTouchHelper();
         listenerEvent();
@@ -73,6 +75,7 @@ public class PokemonFragment extends Fragment {
     }
 
     private void setUpItemTouchHelper() {
+        viewModel.getAllTheUserPokemonFromServer();
         ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -88,7 +91,8 @@ public class PokemonFragment extends Fragment {
                     viewModel.insertOrUpdateUserPokemon(userPokemon);
                     adapter.notifyItemChanged(swipedPokemonPosition);
                     viewModel.getAllTheUserPokemonFromServer();
-
+                    Toast.makeText(getActivity(), "Bạn đã thêm vào danh sách yêu thích", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onSwiped: " + swipedPokemonPosition);
                 });
             }
         };

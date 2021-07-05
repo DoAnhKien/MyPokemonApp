@@ -79,6 +79,9 @@ public class UserViewModel extends ViewModel {
                         mListUser.setValue(users);
                     }
                 }, error -> {
+
+                    Log.d(TAG, "getAllUserOnServer: " + error.toString());
+
                     error.printStackTrace();
                 });
     }

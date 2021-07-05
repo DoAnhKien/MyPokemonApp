@@ -50,6 +50,7 @@ public class FavoriteFragment extends Fragment {
     private UserPokemonAdapterA adapter;
     private FragmentFavoriteBinding binding;
     private List<UserPokemon> mUserPokemons;
+    private String TAG = "kienda";
 
     @Nullable
     @Override
@@ -62,25 +63,29 @@ public class FavoriteFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mUserPokemons = new ArrayList<>();
-        setUpItemTouchHelper();
         adapter = new UserPokemonAdapterA(mUserPokemons);
         binding.rvFavorite.setAdapter(adapter);
-        viewModel = new ViewModelProvider(requireActivity()).get(UserPokemonViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(UserPokemonViewModel.class);
+        viewModel.getAllTheUserPokemonFromServer();
         viewModel.getmUserPokemon().observe(getViewLifecycleOwner(), userPokemons -> {
             LoginActivity.viewModel.getUserLogin().observe(getActivity(), user -> {
+
+                List<UserPokemon> userPokemonList = new ArrayList<>();
+
                 for (int i = 0; i < userPokemons.size(); i++) {
                     if (userPokemons.get(i).getUserEmail().equals(user.getUserEmail())) {
-                        mUserPokemons.add(userPokemons.get(i));
+                        userPokemonList.add(userPokemons.get(i));
                     }
                 }
 
-                Log.d("kien123", "onViewCreated: " + mUserPokemons.size());
-                adapter.submitList(mUserPokemons);
+                Log.d(TAG, "onViewCreated: " + userPokemonList.size());
+
+                adapter.submitList(userPokemonList);
 
             });
         });
 
-        viewModel.getAllTheUserPokemonFromServer();
+
         listenerTheEvent();
     }
 
@@ -93,7 +98,7 @@ public class FavoriteFragment extends Fragment {
 
             @Override
             public void onLongClick(UserPokemon userPokemon, int position) {
-                Toast.makeText(getActivity(), "On Long Click", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Đã xóa khỏi danh sách yêu thích", Toast.LENGTH_SHORT).show();
                 adapter.deleteAUserPokemon(position);
                 viewModel.deleteUserPokemon(userPokemon.getId());
             }
