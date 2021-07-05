@@ -1,5 +1,6 @@
 package com.example.mypokemonapp.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,6 +48,7 @@ public class RegisterAccountActivity extends AppCompatActivity implements View.O
 
     private void observeData() {
         viewModel.getCurrentUser().observe(this, user -> {
+            sendEmail(user.getUserEmail());
             Toast.makeText(this, "Đăng kí tải khoản thành công", Toast.LENGTH_SHORT).show();
             finish();
         });
@@ -68,6 +70,21 @@ public class RegisterAccountActivity extends AppCompatActivity implements View.O
             }
         });
     }
+
+
+    private void sendEmail(String email) {
+        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+        mailIntent.setType("message/rfc822");
+        mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Xac thuc gmail");
+        mailIntent.putExtra(Intent.EXTRA_TEXT, "body of email");
+        try {
+            startActivity(Intent.createChooser(mailIntent, "Send mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
