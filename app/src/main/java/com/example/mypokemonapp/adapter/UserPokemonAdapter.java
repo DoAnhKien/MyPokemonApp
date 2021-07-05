@@ -40,12 +40,16 @@ public class UserPokemonAdapter extends ListAdapter<UserPokemon, UserPokemonAdap
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull UserPokemonAdapter.ViewHolder holder, int position) {
+
         holder.binding.setUserPokemon(getItem(position));
+
         holder.itemView.setOnLongClickListener(v -> {
             handleUserPokemonClick.onLongClick(getUserPokemonAt(position), position);
             return true;
         });
+
         holder.itemView.setOnClickListener(v -> handleUserPokemonClick.onClick(getUserPokemonAt(position), position));
+
     }
 
 
@@ -66,6 +70,7 @@ public class UserPokemonAdapter extends ListAdapter<UserPokemon, UserPokemonAdap
             this.binding = binding;
             this.binding.executePendingBindings();
         }
+
     }
 
     private static final DiffUtil.ItemCallback<UserPokemon> DIFF_CALLBACK = new DiffUtil.ItemCallback<UserPokemon>() {

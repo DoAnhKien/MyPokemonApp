@@ -36,4 +36,18 @@ public class DetailActivity extends AppCompatActivity {
         Pokemon pokemon = (Pokemon) bundle.getSerializable("kkk");
         binding.setPokemon(pokemon);
     }
+
+
+    private void sendEmail() {
+        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+        mailIntent.setType("message/rfc822");
+        mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"doanhkien001@gmail.com"});
+        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Xac thuc gmail");
+        mailIntent.putExtra(Intent.EXTRA_TEXT, "body of email");
+        try {
+            startActivity(Intent.createChooser(mailIntent, "Send mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+
+        }
+    }
 }
