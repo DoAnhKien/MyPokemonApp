@@ -37,6 +37,7 @@ public class UserPokemonViewModel extends ViewModel {
     }
 
     public void getAllThePokemonFromServer() {
+
         repository.getAllPokemon().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(pokemons -> {
@@ -48,7 +49,10 @@ public class UserPokemonViewModel extends ViewModel {
                         mPokemon.setValue(pokemons);
                     }
                 }, error -> {
+
+
                 });
+
     }
 
     public void getAllTheUserPokemonFromServer() {

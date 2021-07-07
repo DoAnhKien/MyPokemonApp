@@ -1,12 +1,13 @@
 package com.example.mypokemonapp.model;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class PokemonTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class PokemonTest {
 
     @Test
-    void testTheInputDataOfThePokemonModel() {
+    public void testTheInputDataOfThePokemonModel() {
         Pokemon pokemon = new Pokemon(1, "0", "1", "2", "3", "4", "5", "6", "!7", "8", "9", "10", "11");
         assertEquals(1, pokemon.getId());
         assertEquals("0", pokemon.getPokemonName());
@@ -24,7 +25,7 @@ class PokemonTest {
     }
 
     @Test
-    void testTheInputDataOfTheUserModel() {
+    public void testTheInputDataOfTheUserModel() {
         User user = new User(1, "1", "2", "3", "4");
         assertEquals(1, user.getUserId());
         assertEquals("1", user.getUserEmail());
@@ -34,7 +35,7 @@ class PokemonTest {
     }
 
     @Test
-    void testTheInputDataOfTheUserPokemon() {
+    public void testTheInputDataOfTheUserPokemon() {
         UserPokemon userPokemon = new UserPokemon(1, "1", "2", "3");
         assertEquals(1, userPokemon.getId());
         assertEquals("1", userPokemon.getUserEmail());
@@ -44,7 +45,7 @@ class PokemonTest {
 
 
     @Test
-    void testTheSetOutPutDataOfThePokemon() {
+    public void testTheSetOutPutDataOfThePokemon() {
         Pokemon pokemon = new Pokemon(1, "000", "1111", "2222", "3333", "4444", "5555", "66666", "!77777", "888888", "99999", "10000", "1111111");
         pokemon.setId(1);
         pokemon.setPokemonName("0");
@@ -75,7 +76,7 @@ class PokemonTest {
     }
 
     @Test
-    void testTheSetOutPutDataOfTheUser() {
+    public void testTheSetOutPutDataOfTheUser() {
         User user = new User(1, "aaa", "bbb", "ccc", "ddd");
         user.setUserId(3);
         user.setUserEmail("3");
@@ -90,7 +91,7 @@ class PokemonTest {
     }
 
     @Test
-    void testTheSetOutPutDataOfTheUserPokemon() {
+    public void testTheSetOutPutDataOfTheUserPokemon() {
         UserPokemon userPokemon = new UserPokemon(1, "kien", "kien", "kkk");
         userPokemon.setId(2);
         userPokemon.setUserEmail("kien123");
