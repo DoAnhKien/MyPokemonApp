@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -42,6 +43,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.wear:wear:1.0.0'
     implementation 'org.jetbrains:annotations:15.0'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
     testImplementation 'junit:junit:4.+'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

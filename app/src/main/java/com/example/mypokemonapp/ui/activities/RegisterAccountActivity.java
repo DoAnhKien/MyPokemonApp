@@ -48,7 +48,6 @@ public class RegisterAccountActivity extends AppCompatActivity implements View.O
 
     private void observeData() {
         viewModel.getCurrentUser().observe(this, user -> {
-            sendEmail(user.getUserEmail());
             Toast.makeText(this, "Đăng kí tải khoản thành công", Toast.LENGTH_SHORT).show();
             finish();
         });
@@ -69,7 +68,10 @@ public class RegisterAccountActivity extends AppCompatActivity implements View.O
                     break;
             }
         });
+
+
     }
+
 
 
     private void sendEmail(String email) {
