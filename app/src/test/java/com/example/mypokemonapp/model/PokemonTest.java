@@ -1,7 +1,10 @@
 package com.example.mypokemonapp.model;
 
 import org.junit.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class PokemonTest {
 
@@ -101,6 +104,7 @@ public class PokemonTest {
         assertEquals("kien123", userPokemon.getPokemonName());
         assertEquals("kien123", userPokemon.getPokemonUrl());
     }
+
 
 
 }
