@@ -1,7 +1,10 @@
 package com.example.mypokemonapp.adapter;
 
+import android.content.IntentFilter;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -14,7 +17,7 @@ import com.example.mypokemonapp.model.Pokemon;
 
 import java.util.List;
 
-public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHolder> {
+public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHolder> implements Filterable {
 
     private List<Pokemon> mPokemons;
     public PokemonAdapter(List<Pokemon> mPokemons) {
@@ -58,6 +61,11 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
         this.mPokemons.clear();
         mPokemons.addAll(data);
         diffResult.dispatchUpdatesTo(this);
+    }
+
+    @Override
+    public Filter getFilter() {
+        return null;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

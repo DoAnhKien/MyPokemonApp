@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -87,11 +88,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item_favorite:
                 binding.vpPokemon.setCurrentItem(1);
                 break;
+            case R.id.signOut:
+                checkForSignOut();
+                break;
             case R.id.item_about:
                 break;
         }
         binding.drawer.close();
         return false;
+    }
+
+    private void checkForSignOut() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     private boolean isTheConnectInternetSuccess() {
