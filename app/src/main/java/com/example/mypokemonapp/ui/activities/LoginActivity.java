@@ -89,6 +89,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void resetDataAndStartActivity() {
         binding.edtUserName.setText("");
         binding.edtUserPassword.setText("");
+
         startActivity(new Intent(LoginActivity.this, RegisterAccountActivity.class));
     }
 

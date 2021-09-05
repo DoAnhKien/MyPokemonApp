@@ -41,4 +41,7 @@ public interface NetworkService {
     @GET("pokemon/all")
     Observable<List<Pokemon>> getAllPokemon();
 
+    @GET("findPokemon/{pokemonName}")
+    Observable<Pokemon> findPokemonByPokemonName(@Path("pokemonName") String pokemonName);
+
 }

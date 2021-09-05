@@ -3,6 +3,7 @@ package com.example.mypokemonapp.viewmodel;
 import android.util.Log;
 
 import androidx.hilt.lifecycle.ViewModelInject;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -21,11 +22,17 @@ public class UserPokemonViewModel extends ViewModel {
     private NetworkRepository repository;
     private MutableLiveData<List<Pokemon>> mPokemon = new MutableLiveData<>();
     private MutableLiveData<List<UserPokemon>> mUserPokemon = new MutableLiveData<>();
-    private String TAG = "UserPokemonViewModel";
+    private MutableLiveData<Pokemon> currentPokemon = new MutableLiveData<>();
+    private String TAG = "KienDA";
 
     @ViewModelInject
     public UserPokemonViewModel(NetworkRepository networkRepository) {
         this.repository = networkRepository;
+    }
+
+
+    public LiveData<Pokemon> getCurrentPokemon() {
+        return currentPokemon;
     }
 
     public MutableLiveData<List<Pokemon>> getmPokemon() {
@@ -37,7 +44,6 @@ public class UserPokemonViewModel extends ViewModel {
     }
 
     public void getAllThePokemonFromServer() {
-
         repository.getAllPokemon().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(pokemons -> {
@@ -53,6 +59,16 @@ public class UserPokemonViewModel extends ViewModel {
 
                 });
 
+    }
+
+    public void findPokemonByPokemonName(String pokemonName) {
+        repository.findPokemonByName(pokemonName).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(pokemon -> {
+                    currentPokemon.postValue(pokemon);
+                }, error -> {
+                    Log.d(TAG, "findPokemonByPokemonName: " + error.toString());
+                });
     }
 
     public void getAllTheUserPokemonFromServer() {

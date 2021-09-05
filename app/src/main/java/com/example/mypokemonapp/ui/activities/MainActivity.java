@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +21,9 @@ import android.widget.Toast;
 import com.example.mypokemonapp.R;
 import com.example.mypokemonapp.adapter.PokemonPagerAdapter;
 import com.example.mypokemonapp.databinding.ActivityMainBinding;
+import com.example.mypokemonapp.ui.fragments.PokemonFragment;
+import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
+import com.example.mypokemonapp.viewmodel.UserViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -26,6 +31,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ActivityMainBinding binding;
+    private UserPokemonViewModel viewModel;
+    private static final String TAG = "KienDA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +42,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initViews() {
+        viewModel = new ViewModelProvider(this).get(UserPokemonViewModel.class);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
         binding.vpPokemon.setAdapter(new PokemonPagerAdapter(getSupportFragmentManager()));
         binding.tabLayout.setupWithViewPager(binding.vpPokemon);
         binding.navMain.setNavigationItemSelectedListener(this);
+        viewModel.getCurrentPokemon().observe(this, pokemon -> {
+            Log.d(TAG, "initViews: pokemon: " + pokemon.getPokemonName());
+        });
     }
 
 
@@ -54,12 +65,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Toast.makeText(MainActivity.this, newText.toString(), Toast.LENGTH_SHORT).show();
+                if (binding.vpPokemon.getCurrentItem() == 0) {
+                    PokemonFragment.adapter.getFilter().filter(newText);
+                } else if (binding.vpPokemon.getCurrentItem() == 1) {
+                    Log.d(TAG, "onQueryTextSubmit: 2");
+                }
                 return false;
             }
         });

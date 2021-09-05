@@ -55,4 +55,8 @@ public class NetworkRepository {
         return services.getAllPokemon();
     }
 
+    public Observable<Pokemon> findPokemonByName(String pokemonName) {
+        return services.findPokemonByPokemonName(pokemonName);
+    }
+
 }

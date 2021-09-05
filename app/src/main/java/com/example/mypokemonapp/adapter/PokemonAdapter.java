@@ -1,6 +1,7 @@
 package com.example.mypokemonapp.adapter;
 
 import android.content.IntentFilter;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -15,14 +16,20 @@ import com.example.mypokemonapp.callback.HandleClick;
 import com.example.mypokemonapp.databinding.ItemPokemonBinding;
 import com.example.mypokemonapp.model.Pokemon;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHolder> implements Filterable {
 
     private List<Pokemon> mPokemons;
+    private List<Pokemon> pokemonFilterList;
+
+
     public PokemonAdapter(List<Pokemon> mPokemons) {
         this.mPokemons = mPokemons;
+        this.pokemonFilterList = mPokemons;
     }
+
     private HandleClick handleClick;
 
     public void setHandleClick(HandleClick handleClick) {
@@ -60,12 +67,13 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
 
         this.mPokemons.clear();
         mPokemons.addAll(data);
+        this.pokemonFilterList = data;
         diffResult.dispatchUpdatesTo(this);
     }
 
     @Override
     public Filter getFilter() {
-        return null;
+        return pokemonFilter;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -77,5 +85,35 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
             this.binding.executePendingBindings();
         }
     }
+
+    private Filter pokemonFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Pokemon> filteredList = new ArrayList<>();
+
+            if (TextUtils.isEmpty(constraint)) {
+                filteredList.addAll(pokemonFilterList);
+            } else {
+                String filterString = constraint.toString().toLowerCase();
+                for (Pokemon currentPokemon : pokemonFilterList) {
+                    if (currentPokemon.getPokemonName().toLowerCase().contains(filterString)) {
+                        filteredList.add(currentPokemon);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mPokemons.clear();
+            mPokemons.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 }

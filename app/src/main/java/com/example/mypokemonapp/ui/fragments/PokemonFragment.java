@@ -33,7 +33,7 @@ public class PokemonFragment extends Fragment {
     private static PokemonFragment INSTANCE;
     private UserPokemonViewModel viewModel;
     private List<Pokemon> mPokemons;
-    private PokemonAdapter adapter;
+    public static PokemonAdapter adapter;
     private FragmentPokemonBinding binding;
     private String TAG = "kienda";
 
@@ -43,6 +43,7 @@ public class PokemonFragment extends Fragment {
         }
         return INSTANCE;
     }
+
 
     @Nullable
     @Override
