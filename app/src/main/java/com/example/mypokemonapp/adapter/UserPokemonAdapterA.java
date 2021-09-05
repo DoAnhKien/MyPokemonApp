@@ -1,24 +1,30 @@
 package com.example.mypokemonapp.adapter;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mypokemonapp.callback.HandleUserPokemonClick;
 import com.example.mypokemonapp.databinding.ItemUserPokemonBinding;
+import com.example.mypokemonapp.model.Pokemon;
 import com.example.mypokemonapp.model.UserPokemon;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class UserPokemonAdapterA extends RecyclerView.Adapter<UserPokemonAdapterA.ViewHolder> {
+public class UserPokemonAdapterA extends RecyclerView.Adapter<UserPokemonAdapterA.ViewHolder> implements Filterable {
 
     private List<UserPokemon> mUserPokemon;
+    private List<UserPokemon> mUserPokemonFull;
 
 
     public UserPokemonAdapterA(List<UserPokemon> mUserPokemon) {
@@ -30,6 +36,7 @@ public class UserPokemonAdapterA extends RecyclerView.Adapter<UserPokemonAdapter
     public void submitList(List<UserPokemon> userPokemonList) {
         mUserPokemon.clear();
         mUserPokemon.addAll(userPokemonList);
+        mUserPokemonFull = userPokemonList;
         notifyDataSetChanged();
     }
 
@@ -72,6 +79,7 @@ public class UserPokemonAdapterA extends RecyclerView.Adapter<UserPokemonAdapter
         return mUserPokemon.size();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         ItemUserPokemonBinding binding;
 
@@ -84,4 +92,39 @@ public class UserPokemonAdapterA extends RecyclerView.Adapter<UserPokemonAdapter
             binding.setUserPokemon(userPokemon);
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return userPokemonFilter;
+    }
+
+
+    private Filter userPokemonFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<UserPokemon> filteredList = new ArrayList<>();
+
+            if (TextUtils.isEmpty(constraint)) {
+                filteredList.addAll(mUserPokemonFull);
+            } else {
+                String filterString = constraint.toString().toLowerCase();
+                for (UserPokemon currentPokemon : mUserPokemonFull) {
+                    if (currentPokemon.getPokemonName().toLowerCase().contains(filterString)) {
+                        filteredList.add(currentPokemon);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mUserPokemon.clear();
+            mUserPokemon.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

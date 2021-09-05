@@ -47,7 +47,7 @@ public class FavoriteFragment extends Fragment {
     }
 
     private UserPokemonViewModel viewModel;
-    private UserPokemonAdapterA adapter;
+    public static UserPokemonAdapterA adapter;
     private FragmentFavoriteBinding binding;
     private List<UserPokemon> mUserPokemons;
     private String TAG = "kienda";

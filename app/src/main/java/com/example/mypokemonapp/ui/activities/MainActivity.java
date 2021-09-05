@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.mypokemonapp.R;
 import com.example.mypokemonapp.adapter.PokemonPagerAdapter;
 import com.example.mypokemonapp.databinding.ActivityMainBinding;
+import com.example.mypokemonapp.ui.fragments.FavoriteFragment;
 import com.example.mypokemonapp.ui.fragments.PokemonFragment;
 import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
 import com.example.mypokemonapp.viewmodel.UserViewModel;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (binding.vpPokemon.getCurrentItem() == 0) {
                     PokemonFragment.adapter.getFilter().filter(newText);
                 } else if (binding.vpPokemon.getCurrentItem() == 1) {
-                    Log.d(TAG, "onQueryTextSubmit: 2");
+                    FavoriteFragment.adapter.getFilter().filter(newText);
                 }
                 return false;
             }
