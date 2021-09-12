@@ -15,18 +15,29 @@ import com.example.mypokemonapp.model.User;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class UserAdapter extends ListAdapter<User, UserAdapter.ViewHolder> {
 
-    public UserAdapter() {
-        super(DIFF_CALLBACK);
-    }
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private OnItemUserOnClick onClick;
+    private List<User> mUser = new ArrayList<>();
 
-    public void setOnClick(OnItemUserOnClick onClick) {
+
+    public UserAdapter(OnItemUserOnClick onClick, List<User> mUser) {
         this.onClick = onClick;
+        this.mUser = mUser;
     }
+
+
+    public void submitNewData(List<User> mUser) {
+        this.mUser.clear();
+        this.mUser = mUser;
+        notifyDataSetChanged();
+    }
+
+
 
     @NonNull
     @Override
@@ -37,14 +48,24 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull @org.jetbrains.annotations.NotNull UserAdapter.ViewHolder holder, int position) {
-        holder.binding.setUser(getItem(position));
+        holder.binding.setUser(mUser.get(position));
         holder.itemView.setOnClickListener(v -> {
-            onClick.onClick(position, getCurrentList().get(position));
+            onClick.onClick(position, mUser.get(position));
         });
         holder.itemView.setOnLongClickListener(v -> {
-            onClick.onLongClick(position, getCurrentList().get(position));
+            onClick.onLongClick(position, mUser.get(position));
             return true;
         });
+    }
+
+    @Override
+    public int getItemCount() {
+        return mUser.size();
+    }
+
+
+    public User getCurrentItem(int position) {
+        return mUser.get(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -56,18 +77,6 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.ViewHolder> {
             this.binding.executePendingBindings();
         }
     }
-
-    private static final DiffUtil.ItemCallback<User> DIFF_CALLBACK = new DiffUtil.ItemCallback<User>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull @NotNull User oldItem, @NonNull @NotNull User newItem) {
-            return oldItem.getUserId() == newItem.getUserId();
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull @NotNull User oldItem, @NonNull @NotNull User newItem) {
-            return oldItem.equals(newItem);
-        }
-    };
 
 
 }

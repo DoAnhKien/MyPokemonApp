@@ -22,6 +22,9 @@ public interface NetworkService {
     @POST("user/add")
     Observable<User> insertOrUpdateUser(@Body User user);
 
+    @POST("user/update")
+    Observable<User> updateUer(@Body User user);
+
     @POST("user/delete/{id}")
     Observable<User> deleteUserById(@Path("id") int id);
 

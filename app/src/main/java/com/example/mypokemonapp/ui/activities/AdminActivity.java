@@ -1,6 +1,7 @@
 package com.example.mypokemonapp.ui.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,6 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class AdminActivity extends AppCompatActivity implements OnItemUserOnClick {
+    private static final int REQUEST_CODE = 123;
     private ActivityAdminBinding binding;
     private UserViewModel viewModel;
     private UserAdapter adapter;
@@ -41,11 +43,12 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
     }
 
     private void initViews() {
-        adapter = new UserAdapter();
-        adapter.setOnClick(this);
+        List<User> mUser = new ArrayList<>();
+        adapter = new UserAdapter(this, mUser);
         viewModel = new ViewModelProvider(this).get(UserViewModel.class);
         viewModel.getAllUser().observe(this, users1 -> {
-            adapter.submitList(users1);
+            Log.d(TAG, "initViews: ");
+            adapter.submitNewData(users1);
         });
         viewModel.getAllUserOnServer();
         binding.rvAdmin.setAdapter(adapter);
@@ -63,7 +66,7 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int swipedPokemonPosition = viewHolder.getAdapterPosition();
-                User user = adapter.getCurrentList().get(swipedPokemonPosition);
+                User user = adapter.getCurrentItem(swipedPokemonPosition);
                 viewModel.deleteUserById(user.getUserId());
                 adapter.notifyItemChanged(swipedPokemonPosition);
                 viewModel.getAllUserOnServer();
@@ -79,7 +82,7 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
         Bundle bundle = new Bundle();
         bundle.putSerializable("123", user);
         intent.putExtra("mmm", bundle);
-        startActivity(intent);
+        startActivityForResult(intent,REQUEST_CODE);
     }
 
     @Override
@@ -87,5 +90,14 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
+    }
 }

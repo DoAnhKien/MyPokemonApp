@@ -31,6 +31,10 @@ public class NetworkRepository {
         return services.insertOrUpdateUser(user);
     }
 
+    public Observable<User> updateUser(User user) {
+        return services.updateUer(user);
+    }
+
     public Observable<User> deleteUserById(int id) {
         return services.deleteUserById(id);
     }

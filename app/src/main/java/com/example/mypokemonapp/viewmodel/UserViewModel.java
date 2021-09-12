@@ -98,6 +98,7 @@ public class UserViewModel extends ViewModel {
                             .subscribe(user1 -> {
                                 currentUser.postValue(user1);
                             }, error -> {
+                                Log.d(TAG, "insertOrUpdateAUser: " + error.toString());
                                 error.printStackTrace();
                                 loginState.setValue(LoginState.USER_EXIST);
                             });
@@ -111,7 +112,29 @@ public class UserViewModel extends ViewModel {
         }
     }
 
+    public void updateUser(int userId, String userEmail, String userName, String userPassword) {
+        if (!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPassword)) {
+            Log.d(TAG, "updateUser: ");
+            User user = new User(userId, userEmail, userName, userPassword, Const.STRING_WORKER);
+            networkRepository.updateUser(user)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(user1 -> {
+                        currentUser.postValue(user1);
+                    }, error -> {
+                        Log.d(TAG, "000: " + error.toString());
+                        error.printStackTrace();
+                        loginState.setValue(LoginState.USER_EXIST);
+                    });
+            if (userEmail.contains("@gmail.com")) {
 
+                return;
+            }
+            loginState.setValue(LoginState.ERROR_GMAIL);
+        } else {
+            loginState.setValue(LoginState.USER_NULL);
+        }
+    }
 
 
     public void deleteUserById(int id) {
