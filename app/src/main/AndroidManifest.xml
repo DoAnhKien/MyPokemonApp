@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MyPokemonApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.activities.AddEditUserActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.activities.AdminActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
@@ -28,16 +31,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".ui.activities.DetailActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".ui.activities.MainActivity"
-            android:configChanges="screenSize|orientation|screenLayout|navigation">
-
-        </activity>
+            android:configChanges="screenSize|orientation|screenLayout|navigation"></activity>
     </application>
 
 </manifest>

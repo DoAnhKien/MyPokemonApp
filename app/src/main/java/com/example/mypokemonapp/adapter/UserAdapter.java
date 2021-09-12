@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mypokemonapp.callback.OnItemUserOnClick;
 import com.example.mypokemonapp.databinding.ItemUserBinding;
 import com.example.mypokemonapp.model.User;
 
@@ -20,6 +22,12 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.ViewHolder> {
         super(DIFF_CALLBACK);
     }
 
+    private OnItemUserOnClick onClick;
+
+    public void setOnClick(OnItemUserOnClick onClick) {
+        this.onClick = onClick;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull @org.jetbrains.annotations.NotNull ViewGroup parent, int viewType) {
@@ -30,6 +38,13 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull @org.jetbrains.annotations.NotNull UserAdapter.ViewHolder holder, int position) {
         holder.binding.setUser(getItem(position));
+        holder.itemView.setOnClickListener(v -> {
+            onClick.onClick(position, getCurrentList().get(position));
+        });
+        holder.itemView.setOnLongClickListener(v -> {
+            onClick.onLongClick(position, getCurrentList().get(position));
+            return true;
+        });
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

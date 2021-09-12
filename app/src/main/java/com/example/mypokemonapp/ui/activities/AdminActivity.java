@@ -7,12 +7,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.mypokemonapp.R;
 import com.example.mypokemonapp.adapter.UserAdapter;
 
+import com.example.mypokemonapp.callback.OnItemUserOnClick;
 import com.example.mypokemonapp.databinding.ActivityAdminBinding;
 import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.model.UserPokemon;
@@ -24,7 +26,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class AdminActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity implements OnItemUserOnClick {
     private ActivityAdminBinding binding;
     private UserViewModel viewModel;
     private UserAdapter adapter;
@@ -40,6 +42,7 @@ public class AdminActivity extends AppCompatActivity {
 
     private void initViews() {
         adapter = new UserAdapter();
+        adapter.setOnClick(this);
         viewModel = new ViewModelProvider(this).get(UserViewModel.class);
         viewModel.getAllUser().observe(this, users1 -> {
             adapter.submitList(users1);
@@ -69,4 +72,20 @@ public class AdminActivity extends AppCompatActivity {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(binding.rvAdmin);
     }
+
+    @Override
+    public void onClick(int position, User user) {
+        Intent intent = new Intent(this, AddEditUserActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("123", user);
+        intent.putExtra("mmm", bundle);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onLongClick(int position, User user) {
+
+    }
+
+
 }
