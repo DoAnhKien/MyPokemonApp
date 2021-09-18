@@ -6,5 +6,6 @@ public interface Const {
     String BASE_URL_DATABASE = "http://192.168.0.110:8082/";
     String STRING_WORKER = "worker";
     String STRING_ADMIN = "admin";
-
+    String APP_DATABASE = "APP.DB";
+    String FILE_NAME = "setting_pokemon_app";
 }

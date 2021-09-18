@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.mypokemonapp.aenum.LoginState;
 import com.example.mypokemonapp.model.User;
-import com.example.mypokemonapp.repository.NetworkRepository;
+import com.example.mypokemonapp.repository.AppDatabaseRepository;
 import com.example.mypokemonapp.util.Const;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class UserViewModel extends ViewModel {
 
-    private NetworkRepository networkRepository;
+    private AppDatabaseRepository appDatabaseRepository;
     private MutableLiveData<List<User>> mListUser = new MutableLiveData<>();
     private MutableLiveData<User> currentUser = new MutableLiveData<>();
     private MutableLiveData<LoginState> loginState = new MutableLiveData<>();
@@ -28,8 +28,8 @@ public class UserViewModel extends ViewModel {
     private String TAG = "kienda";
 
     @ViewModelInject
-    public UserViewModel(NetworkRepository networkRepository) {
-        this.networkRepository = networkRepository;
+    public UserViewModel(AppDatabaseRepository appDatabaseRepository) {
+        this.appDatabaseRepository = appDatabaseRepository;
     }
 
     public MutableLiveData<List<User>> getAllUser() {
@@ -68,7 +68,7 @@ public class UserViewModel extends ViewModel {
     }
 
     public void getAllUserOnServer() {
-        networkRepository.getAllUser().observeOn(AndroidSchedulers.mainThread())
+        appDatabaseRepository.getAllUser().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(users -> {
                     if (mListUser.getValue() != null) {
@@ -92,7 +92,7 @@ public class UserViewModel extends ViewModel {
             if (userEmail.contains("@gmail.com")) {
                 if (userPassword.equals(userRetypePassword)) {
                     User user = new User(null, userEmail, userName, userPassword, Const.STRING_WORKER);
-                    networkRepository.insertOrUpdateUser(user)
+                    appDatabaseRepository.insertOrUpdateUser(user)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(user1 -> {
@@ -116,7 +116,7 @@ public class UserViewModel extends ViewModel {
         if (!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPassword)) {
             Log.d(TAG, "updateUser: ");
             User user = new User(userId, userEmail, userName, userPassword, Const.STRING_WORKER);
-            networkRepository.updateUser(user)
+            appDatabaseRepository.updateUser(user)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(user1 -> {
@@ -136,9 +136,13 @@ public class UserViewModel extends ViewModel {
         }
     }
 
+    public void insertAUserForLocalDatabase(User user) {
+        appDatabaseRepository.insertLocalDatabase(user);
+    }
+
 
     public void deleteUserById(int id) {
-        networkRepository.deleteUserById(id).observeOn(AndroidSchedulers.mainThread())
+        appDatabaseRepository.deleteUserById(id).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(user -> {
 

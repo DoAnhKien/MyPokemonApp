@@ -53,6 +53,7 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
         viewModel.getAllUserOnServer();
         binding.rvAdmin.setAdapter(adapter);
         binding.rvAdmin.setHasFixedSize(true);
+        viewModel.insertAUserForLocalDatabase(new User(1, "1", "1", "1", "1"));
     }
 
     private void setUpItemTouchHelper() {
@@ -82,7 +83,7 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
         Bundle bundle = new Bundle();
         bundle.putSerializable("123", user);
         intent.putExtra("mmm", bundle);
-        startActivityForResult(intent,REQUEST_CODE);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override

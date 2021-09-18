@@ -3,6 +3,10 @@ package com.example.mypokemonapp.model;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.example.mypokemonapp.aenum.LoginState;
 import com.example.mypokemonapp.util.Const;
 import com.google.gson.annotations.Expose;
@@ -17,20 +21,27 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
+@Entity(tableName = "user_table")
 public class User implements Serializable {
 
+    @PrimaryKey()
+    @ColumnInfo(name = "user_id")
     @SerializedName("userId")
     @Expose
     private Integer userId;
+    @ColumnInfo(name = "user_email")
     @SerializedName("userEmail")
     @Expose
     private String userEmail;
+    @ColumnInfo(name = "user_name")
     @SerializedName("userName")
     @Expose
     private String userName;
+    @ColumnInfo(name = "user_password")
     @SerializedName("userPassword")
     @Expose
     private String userPassword;
+    @ColumnInfo(name = "user_permission")
     @SerializedName("userPermission")
     @Expose
     private String userPermission;
