@@ -2,6 +2,7 @@ package com.example.mypokemonapp.ui.getfeedback;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,13 +12,15 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.mypokemonapp.R;
 import com.example.mypokemonapp.databinding.ActivityAdminBinding;
 import com.example.mypokemonapp.databinding.ActivityGetFeedBackBinding;
+import com.example.mypokemonapp.model.FeedBack;
+import com.example.mypokemonapp.model.Report;
 import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
 import com.example.mypokemonapp.viewmodel.UserViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class GetFeedBackActivity extends AppCompatActivity implements View.OnClickListener{
+public class GetFeedBackActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityGetFeedBackBinding binding;
     private GetFeedBackViewModel viewModel;
@@ -41,9 +44,32 @@ public class GetFeedBackActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-
+        switch (v.getId()) {
+            case R.id.tvCancel:
+                cancelActivity();
+                return;
+            case R.id.tvConfirm:
+                confirmActivity();
+                return;
         }
+    }
+
+    private void confirmActivity() {
+        if (binding.edtContent.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Can't empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        viewModel.getAllUserInLocalDatabase().observe(this, users -> {
+                    FeedBack feedBack = new FeedBack(0, users.get(0).getUserId(), String.valueOf(System.currentTimeMillis()), binding.edtContent.getText().toString());
+                    viewModel.insertOrUpdateAReport(feedBack);
+                    finish();
+                }
+        );
+
+    }
+
+    private void cancelActivity() {
+        finish();
     }
 
 }
