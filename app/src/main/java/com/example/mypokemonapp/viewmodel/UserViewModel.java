@@ -48,6 +48,12 @@ public class UserViewModel extends ViewModel {
         return loginState;
     }
 
+
+    void insertUser(User user){
+        appDatabaseRepository.deleteAllLocalUser();
+        appDatabaseRepository.insertLocalDatabase(user);
+    }
+
     public void checkForLogin(List<User> users, String userName, String userPassword) {
         if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPassword)) {
             for (int i = 0; i < users.size(); i++) {
@@ -55,9 +61,11 @@ public class UserViewModel extends ViewModel {
                 if (user.getUserName().equals(userName) && user.getUserPassword().equals(userPassword) && user.getUserPermission().equals(Const.STRING_WORKER)) {
                     loginState.setValue(LoginState.WORKER_ACCESS);
                     userLogin.postValue(user);
+                    insertUser(user);
                     return;
                 } else if (user.getUserName().equals(userName) && user.getUserPassword().equals(userPassword) && user.getUserPermission().equals(Const.STRING_ADMIN)) {
                     loginState.setValue(LoginState.ADMIN_ACCESS);
+                    insertUser(user);
                     return;
                 }
             }

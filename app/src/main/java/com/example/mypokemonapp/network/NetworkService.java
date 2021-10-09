@@ -1,7 +1,9 @@
 package com.example.mypokemonapp.network;
 
 
+import com.example.mypokemonapp.model.FeedBack;
 import com.example.mypokemonapp.model.Pokemon;
+import com.example.mypokemonapp.model.Report;
 import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.model.UserPokemon;
 
@@ -15,7 +17,6 @@ import retrofit2.http.Path;
 
 public interface NetworkService {
     // user
-
     @GET("user/all")
     Observable<List<User>> getAllUser();
 
@@ -29,7 +30,6 @@ public interface NetworkService {
     Observable<User> deleteUserById(@Path("id") int id);
 
     // user-pokemon
-
     @GET("user-pokemon/all")
     Observable<List<UserPokemon>> getAllUserPokemon();
 
@@ -40,11 +40,35 @@ public interface NetworkService {
     Observable<UserPokemon> deleteUserPokemon(@Path("id") int id);
 
     // pokemon
-
     @GET("pokemon/all")
     Observable<List<Pokemon>> getAllPokemon();
 
     @GET("findPokemon/{pokemonName}")
     Observable<Pokemon> findPokemonByPokemonName(@Path("pokemonName") String pokemonName);
 
+    // report
+    @GET("report/all")
+    Observable<List<Report>> getAllTheReport();
+
+    @POST("report/add")
+    Observable<Report> insertOrUpdateTheReport(@Body Report report);
+
+    @POST("report/delete/{id}")
+    Observable<Report> deleteReportById(@Path("id") int id);
+
+    @POST("report/find/{userId}")
+    Observable<Report> findUserReportByUserId(@Path("userId") int userId);
+
+    // feed back
+    @GET("feedback/all")
+    Observable<List<FeedBack>> getAllTheFeedBack();
+
+    @GET("feedback/add")
+    Observable<FeedBack> insertOrUpdateTheReport(@Body FeedBack feedBack);
+
+    @POST("feedback/delete/{id}")
+    Observable<FeedBack> deleteFeedBackById(@Path("id") int id);
+
+    @POST("feedback/find/{userId}")
+    Observable<FeedBack> findUserFeedBackByUserId(@Path("userId") int userId);
 }

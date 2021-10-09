@@ -16,15 +16,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.mypokemonapp.R;
 import com.example.mypokemonapp.adapter.PokemonPagerAdapter;
 import com.example.mypokemonapp.databinding.ActivityMainBinding;
 import com.example.mypokemonapp.ui.fragments.FavoriteFragment;
 import com.example.mypokemonapp.ui.fragments.PokemonFragment;
+import com.example.mypokemonapp.ui.getfeedback.GetFeedBackActivity;
+import com.example.mypokemonapp.ui.sendreport.SendReportActivity;
 import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
-import com.example.mypokemonapp.viewmodel.UserViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -110,9 +110,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.item_about:
                 break;
+            case R.id.sendFeedBack:
+                sendFeedBackToAdmin();
+                break;
+            case R.id.sendReport:
+                sendReportToAdmin();
+                break;
         }
         binding.drawer.close();
         return false;
+    }
+
+    private void sendReportToAdmin(){
+        Intent intent = new Intent(this, SendReportActivity.class);
+        startActivity(intent);
+    }
+
+    private void sendFeedBackToAdmin() {
+        Intent intent = new Intent(this, GetFeedBackActivity.class);
+        startActivity(intent);
     }
 
     private void checkForSignOut() {

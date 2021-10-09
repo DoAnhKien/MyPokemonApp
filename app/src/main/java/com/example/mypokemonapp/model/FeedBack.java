@@ -14,10 +14,21 @@ public class FeedBack {
     private Integer userId;
     @SerializedName("feedBackDate")
     @Expose
-    private Integer feedBackDate;
+    private String feedBackDate;
     @SerializedName("feedBackContent")
     @Expose
     private String feedBackContent;
+
+
+    public FeedBack() {
+    }
+
+    public FeedBack(Integer feedBackId, Integer userId, String feedBackDate, String feedBackContent) {
+        this.feedBackId = feedBackId;
+        this.userId = userId;
+        this.feedBackDate = feedBackDate;
+        this.feedBackContent = feedBackContent;
+    }
 
     public Integer getFeedBackId() {
         return feedBackId;
@@ -35,11 +46,11 @@ public class FeedBack {
         this.userId = userId;
     }
 
-    public Integer getFeedBackDate() {
+    public String getFeedBackDate() {
         return feedBackDate;
     }
 
-    public void setFeedBackDate(Integer feedBackDate) {
+    public void setFeedBackDate(String feedBackDate) {
         this.feedBackDate = feedBackDate;
     }
 
@@ -50,5 +61,4 @@ public class FeedBack {
     public void setFeedBackContent(String feedBackContent) {
         this.feedBackContent = feedBackContent;
     }
-
 }

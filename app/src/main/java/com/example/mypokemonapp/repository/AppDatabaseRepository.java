@@ -5,7 +5,9 @@ import androidx.lifecycle.LiveData;
 
 import com.example.mypokemonapp.db.SettingDao;
 import com.example.mypokemonapp.db.UserDao;
+import com.example.mypokemonapp.model.FeedBack;
 import com.example.mypokemonapp.model.Pokemon;
+import com.example.mypokemonapp.model.Report;
 import com.example.mypokemonapp.model.Setting;
 import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.model.UserPokemon;
@@ -84,9 +86,48 @@ public class AppDatabaseRepository {
         userDao.insertAUSer(user);
     }
 
+    public void deleteAllLocalUser(){
+        userDao.deleteAllUser();
+    }
+
     public void insertSettingDatabase(Setting setting) {
         settingDao.insetSetting(setting);
     }
 
+    // feedback
+
+    public Observable<FeedBack> insertOrUpdateFeedBack(FeedBack feedBack) {
+        return networkService.insertOrUpdateTheReport(feedBack);
+    }
+
+    public Observable<List<FeedBack>> getAllFeedBack(FeedBack feedBack) {
+        return networkService.getAllTheFeedBack();
+    }
+
+    public Observable<FeedBack> deleteTheFeedBack(int id) {
+        return networkService.deleteFeedBackById(id);
+    }
+
+    public Observable<FeedBack> findFeedBackById(int id) {
+        return networkService.findUserFeedBackByUserId(id);
+    }
+
+    // report
+
+    public Observable<Report> insertOrUpdateReport(Report report) {
+        return networkService.insertOrUpdateTheReport(report);
+    }
+
+    public Observable<List<Report>> getAllReport() {
+        return networkService.getAllTheReport();
+    }
+
+    public Observable<Report> deleteTheReport(int id) {
+        return networkService.deleteReportById(id);
+    }
+
+    public Observable<Report> findReportById(int id) {
+        return networkService.findUserReportByUserId(id);
+    }
 
 }

@@ -3,26 +3,34 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/item_list"
-            android:icon="@drawable/pokemon"
             android:title="Pokemon" />
         <item
             android:id="@+id/item_favorite"
-            android:icon="@drawable/ic_heart"
             android:title="Favorite" />
     </group>
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/item_about"
-            android:icon="@drawable/ic_info"
             android:title="Above us" />
     </group>
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/signOut"
-            android:icon="@drawable/ic_info"
             android:title="Sign Out" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/sendReport"
+            android:title="Send FeedBack" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/sendFeedBack"
+            android:title="Send Report" />
     </group>
 
 

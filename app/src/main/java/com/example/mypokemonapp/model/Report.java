@@ -16,10 +16,10 @@ public class Report {
     private Integer userId;
     @SerializedName("reportCreateDate")
     @Expose
-    private Integer reportCreateDate;
+    private String reportCreateDate;
     @SerializedName("reportHandleDate")
     @Expose
-    private Integer reportHandleDate;
+    private String reportHandleDate;
     @SerializedName("reportContent")
     @Expose
     private String reportContent;
@@ -29,6 +29,21 @@ public class Report {
     @SerializedName("reportStatus")
     @Expose
     private Boolean reportStatus;
+
+
+    public Report() {
+    }
+
+    public Report(Integer reportId, Integer adminId, Integer userId, String reportCreateDate, String reportHandleDate, String reportContent, String reportResult, Boolean reportStatus) {
+        this.reportId = reportId;
+        this.adminId = adminId;
+        this.userId = userId;
+        this.reportCreateDate = reportCreateDate;
+        this.reportHandleDate = reportHandleDate;
+        this.reportContent = reportContent;
+        this.reportResult = reportResult;
+        this.reportStatus = reportStatus;
+    }
 
     public Integer getReportId() {
         return reportId;
@@ -54,19 +69,19 @@ public class Report {
         this.userId = userId;
     }
 
-    public Integer getReportCreateDate() {
+    public String getReportCreateDate() {
         return reportCreateDate;
     }
 
-    public void setReportCreateDate(Integer reportCreateDate) {
+    public void setReportCreateDate(String reportCreateDate) {
         this.reportCreateDate = reportCreateDate;
     }
 
-    public Integer getReportHandleDate() {
+    public String getReportHandleDate() {
         return reportHandleDate;
     }
 
-    public void setReportHandleDate(Integer reportHandleDate) {
+    public void setReportHandleDate(String reportHandleDate) {
         this.reportHandleDate = reportHandleDate;
     }
 
@@ -93,6 +108,5 @@ public class Report {
     public void setReportStatus(Boolean reportStatus) {
         this.reportStatus = reportStatus;
     }
-
 }
 
