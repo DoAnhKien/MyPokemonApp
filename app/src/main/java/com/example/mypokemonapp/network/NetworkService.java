@@ -63,7 +63,7 @@ public interface NetworkService {
     @GET("feedback/all")
     Observable<List<FeedBack>> getAllTheFeedBack();
 
-    @GET("feedback/add")
+    @POST("feedback/add")
     Observable<FeedBack> insertOrUpdateTheReport(@Body FeedBack feedBack);
 
     @POST("feedback/delete/{id}")

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.MyPokemonApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.report.DetailReportActivity"
+            android:name=".ui.admin.ReportActivity"
             android:exported="true" />
         <activity
             android:name=".ui.getfeedback.GetFeedBackActivity"
@@ -25,6 +25,9 @@
             android:exported="true" />
         <activity
             android:name=".ui.activities.AddEditUserActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.admin.FeedBackActivity"
             android:exported="true" />
         <activity
             android:name=".ui.activities.AdminActivity"

@@ -111,10 +111,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item_about:
                 break;
             case R.id.sendFeedBack:
-                sendFeedBackToAdmin();
+                sendReportToAdmin();
                 break;
             case R.id.sendReport:
-                sendReportToAdmin();
+                sendFeedBackToAdmin();
                 break;
         }
         binding.drawer.close();

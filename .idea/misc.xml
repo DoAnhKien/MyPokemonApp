@@ -6,10 +6,18 @@
         <entry key="..\:/DoAn/MyPokemonApp/app/src/main/res/menu/main_search_menu.xml" value="0.35989583333333336" />
         <entry key="..\:/DoAn/MyPokemonApp/app/src/main/res/menu/menu_main.xml" value="0.35989583333333336" />
         <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/drawable/button.xml" value="0.37604166666666666" />
+        <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/drawable/ic_question.xml" value="0.37604166666666666" />
         <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/activity_add_edit_user.xml" value="0.33" />
+        <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/activity_admin.xml" value="0.18668596237337193" />
+        <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/activity_detail.xml" value="0.35989583333333336" />
+        <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/activity_feed_back.xml" value="0.3458333333333333" />
+        <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/activity_feed_back_report.xml" value="0.35989583333333336" />
         <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/activity_get_feed_back.xml" value="0.2509057971014493" />
+        <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/activity_report.xml" value="0.35989583333333336" />
         <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/activity_send_feed_back.xml" value="0.35989583333333336" />
         <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/activity_send_report.xml" value="0.35989583333333336" />
+        <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/item_feedback.xml" value="0.35989583333333336" />
+        <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/item_report.xml" value="0.35989583333333336" />
         <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/layout/item_user.xml" value="0.29891304347826086" />
         <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/menu/main_search_menu.xml" value="0.35989583333333336" />
         <entry key="..\:/Learn/m/MyPokemonApp/app/src/main/res/menu/menu_main.xml" value="0.35989583333333336" />

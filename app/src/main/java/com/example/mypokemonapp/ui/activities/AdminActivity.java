@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.mypokemonapp.R;
 import com.example.mypokemonapp.adapter.UserAdapter;
@@ -19,6 +20,8 @@ import com.example.mypokemonapp.callback.OnItemUserOnClick;
 import com.example.mypokemonapp.databinding.ActivityAdminBinding;
 import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.model.UserPokemon;
+import com.example.mypokemonapp.ui.admin.FeedBackActivity;
+import com.example.mypokemonapp.ui.admin.ReportActivity;
 import com.example.mypokemonapp.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class AdminActivity extends AppCompatActivity implements OnItemUserOnClick {
+public class AdminActivity extends AppCompatActivity implements OnItemUserOnClick, View.OnClickListener {
     private static final int REQUEST_CODE = 123;
     private ActivityAdminBinding binding;
     private UserViewModel viewModel;
@@ -40,6 +43,12 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
         binding = DataBindingUtil.setContentView(this, R.layout.activity_admin);
         initViews();
         setUpItemTouchHelper();
+        setOnClickForView();
+    }
+
+    private void setOnClickForView() {
+        binding.imgFeedBack.setOnClickListener(this);
+        binding.imgReport.setOnClickListener(this);
     }
 
     private void initViews() {
@@ -101,4 +110,26 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
         super.onResume();
         Log.d(TAG, "onResume: ");
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.imgFeedBack:
+                moveToFeedBackActivity();
+                break;
+            case R.id.imgReport:
+                moveToReportActivity();
+                break;
+        }
+    }
+
+    private void moveToReportActivity() {
+        startActivity(new Intent(this, ReportActivity.class));
+    }
+
+    private void moveToFeedBackActivity() {
+        startActivity(new Intent(this, FeedBackActivity.class));
+    }
+
+
 }

@@ -15,19 +15,13 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.mypokemonapp.adapter.PokemonAdapter;
-import com.example.mypokemonapp.adapter.PokemonListAdapter;
-import com.example.mypokemonapp.adapter.UserPokemonAdapter;
+
 import com.example.mypokemonapp.adapter.UserPokemonAdapterA;
-import com.example.mypokemonapp.callback.HandleClick;
 import com.example.mypokemonapp.callback.HandleUserPokemonClick;
 import com.example.mypokemonapp.databinding.FragmentFavoriteBinding;
-import com.example.mypokemonapp.model.Pokemon;
-import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.model.UserPokemon;
 import com.example.mypokemonapp.ui.activities.LoginActivity;
 import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
-import com.example.mypokemonapp.viewmodel.UserViewModel;
 
 
 import org.jetbrains.annotations.NotNull;

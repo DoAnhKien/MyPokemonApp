@@ -100,7 +100,7 @@ public class AppDatabaseRepository {
         return networkService.insertOrUpdateTheReport(feedBack);
     }
 
-    public Observable<List<FeedBack>> getAllFeedBack(FeedBack feedBack) {
+    public Observable<List<FeedBack>> getAllFeedBack() {
         return networkService.getAllTheFeedBack();
     }
 
