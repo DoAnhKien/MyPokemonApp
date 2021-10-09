@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -21,7 +22,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class ReportActivity extends AppCompatActivity {
+public class ReportActivity extends AppCompatActivity implements OnReportItemClick {
 
     private String TAG = "KienDA";
     private ActivityReportBinding binding;
@@ -43,7 +44,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private void initViews() {
         List<Report> mReport = new ArrayList<>();
-        adapter = new ReportAdapter(mReport);
+        adapter = new ReportAdapter(mReport, this);
         viewModel.requestAllReportsInServer();
         viewModel.getmReports().observe(this, reports -> {
             Log.d(TAG, "initViews: " + reports.size());
@@ -53,4 +54,18 @@ public class ReportActivity extends AppCompatActivity {
         binding.rvReport.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         binding.rvReport.setHasFixedSize(true);
     }
+
+    @Override
+    public void onClick(Report report) {
+        Intent intent = new Intent(this, DetailShortActivity.class);
+        intent.putExtra("KienDAA", report.getReportContent());
+        intent.putExtra("KienDAB", report.getUserId());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onLongClick(Report report) {
+
+    }
+
 }

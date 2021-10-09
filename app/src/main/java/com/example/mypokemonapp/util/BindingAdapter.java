@@ -1,6 +1,8 @@
 package com.example.mypokemonapp.util;
 
+import android.text.format.DateFormat;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,5 +44,14 @@ public class BindingAdapter {
     @androidx.databinding.BindingAdapter("recyclerview:adapter")
     public static void setAdapter(RecyclerView recyclerView, PokemonAdapter adapter) {
         recyclerView.setAdapter(adapter);
+    }
+
+    @androidx.databinding.BindingAdapter("convertDate")
+    public static void convertDate(TextView textView, String time) {
+        textView.setText(convertDate(time,"dd/MM/yyyy hh:mm:ss"));
+    }
+
+    public static String convertDate(String dateInMilliseconds, String dateFormat) {
+        return DateFormat.format(dateFormat, Long.parseLong(dateInMilliseconds)).toString();
     }
 }

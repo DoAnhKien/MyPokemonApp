@@ -2,6 +2,7 @@ package com.example.mypokemonapp.ui.admin;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mypokemonapp.callback.HandleUserPokemonClick;
 import com.example.mypokemonapp.databinding.ItemReportBinding;
 import com.example.mypokemonapp.model.Report;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -21,10 +23,12 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
 
     private List<Report> mReports;
     private List<Report> mReportsFull;
+    private OnReportItemClick onReportItemClick;
 
 
-    public ReportAdapter(List<Report> mUserPokemon) {
+    public ReportAdapter(List<Report> mUserPokemon, OnReportItemClick onReportItemClick) {
         this.mReports = mUserPokemon;
+        this.onReportItemClick = onReportItemClick;
         notifyDataSetChanged();
     }
 
@@ -60,6 +64,11 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull @NotNull ReportAdapter.ViewHolder holder, int position) {
         holder.bind(mReports.get(position));
+        holder.itemView.setOnClickListener(v -> onReportItemClick.onClick(mReports.get(position)));
+        holder.itemView.setOnLongClickListener(v -> {
+            onReportItemClick.onClick(mReports.get(position));
+            return true;
+        });
     }
 
     private Report getUserPokemonAt(int position) {

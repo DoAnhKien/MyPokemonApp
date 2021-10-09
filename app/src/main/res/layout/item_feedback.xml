@@ -33,10 +33,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    convertDate="@{feedback.feedBackDate}"
                     android:id="@+id/tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{feedback.feedBackDate}"
                     android:textStyle="bold" />
 
             </LinearLayout>

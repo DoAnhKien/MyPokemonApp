@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MyPokemonApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.admin.DetailShortActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.admin.ReportActivity"
             android:exported="true" />
         <activity

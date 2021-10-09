@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -24,7 +25,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class FeedBackActivity extends AppCompatActivity {
+public class FeedBackActivity extends AppCompatActivity implements OnFeedBackItemClick {
 
     private String TAG = "KienDA";
     private ActivityFeedBackBinding binding;
@@ -46,14 +47,27 @@ public class FeedBackActivity extends AppCompatActivity {
 
     private void initViews() {
         List<FeedBack> mFeedBack = new ArrayList<>();
-        adapter = new FeedBackAdapter(mFeedBack);
+        adapter = new FeedBackAdapter(mFeedBack, this);
         viewModel.getmFeedBacks().observe(this, feedBacks -> {
             Log.d(TAG, "initViews: " + feedBacks.size());
             adapter.submitList(feedBacks);
         });
         viewModel.requestAllFeedBackInServer();
         binding.rvFeedBack.setAdapter(adapter);
-        binding.rvFeedBack.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
+        binding.rvFeedBack.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         binding.rvFeedBack.setHasFixedSize(true);
+    }
+
+    @Override
+    public void onClick(FeedBack feedBack) {
+        Intent intent = new Intent(this, DetailShortActivity.class);
+        intent.putExtra("KienDAA", feedBack.getFeedBackContent());
+        intent.putExtra("KienDAB", feedBack.getUserId());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onLongClick(FeedBack feedBack) {
+
     }
 }

@@ -2,6 +2,7 @@ package com.example.mypokemonapp.ui.admin;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -24,10 +25,11 @@ public class FeedBackAdapter extends RecyclerView.Adapter<FeedBackAdapter.ViewHo
 
     private List<FeedBack> mFeedBack;
     private List<FeedBack> mFeedBackFull;
+    private OnFeedBackItemClick onFeedBackItemClick;
 
-
-    public FeedBackAdapter(List<FeedBack> mFeedBack) {
+    public FeedBackAdapter(List<FeedBack> mFeedBack, OnFeedBackItemClick onFeedBackItemClick) {
         this.mFeedBack = mFeedBack;
+        this.onFeedBackItemClick = onFeedBackItemClick;
         notifyDataSetChanged();
     }
 
@@ -63,6 +65,11 @@ public class FeedBackAdapter extends RecyclerView.Adapter<FeedBackAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull @NotNull FeedBackAdapter.ViewHolder holder, int position) {
         holder.bind(mFeedBack.get(position));
+        holder.itemView.setOnClickListener(v -> onFeedBackItemClick.onClick(mFeedBack.get(position)));
+        holder.itemView.setOnLongClickListener(v -> {
+            mFeedBack.get(position);
+            return true;
+        });
     }
 
     private FeedBack getUserPokemonAt(int position) {
