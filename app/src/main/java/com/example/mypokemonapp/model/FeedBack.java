@@ -4,7 +4,9 @@ package com.example.mypokemonapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class FeedBack {
+import java.io.Serializable;
+
+public class FeedBack implements Serializable {
 
     @SerializedName("feedBackId")
     @Expose

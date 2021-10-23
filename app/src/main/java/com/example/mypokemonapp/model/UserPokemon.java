@@ -3,11 +3,12 @@ package com.example.mypokemonapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class UserPokemon {
+public class UserPokemon implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;

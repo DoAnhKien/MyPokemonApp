@@ -3,7 +3,9 @@ package com.example.mypokemonapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Report {
+import java.io.Serializable;
+
+public class Report implements Serializable {
 
     @SerializedName("reportId")
     @Expose
