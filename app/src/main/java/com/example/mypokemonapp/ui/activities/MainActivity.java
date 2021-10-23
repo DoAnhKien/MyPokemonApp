@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 return false;
             }
 

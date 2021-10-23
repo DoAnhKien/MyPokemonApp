@@ -19,7 +19,6 @@ import com.example.mypokemonapp.adapter.UserAdapter;
 import com.example.mypokemonapp.callback.OnItemUserOnClick;
 import com.example.mypokemonapp.databinding.ActivityAdminBinding;
 import com.example.mypokemonapp.model.User;
-import com.example.mypokemonapp.model.UserPokemon;
 import com.example.mypokemonapp.ui.admin.FeedBackActivity;
 import com.example.mypokemonapp.ui.admin.ReportActivity;
 import com.example.mypokemonapp.viewmodel.UserViewModel;
@@ -56,7 +55,6 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
         adapter = new UserAdapter(this, mUser);
         viewModel = new ViewModelProvider(this).get(UserViewModel.class);
         viewModel.getAllUser().observe(this, users1 -> {
-            Log.d(TAG, "initViews: ");
             adapter.submitNewData(users1);
         });
         viewModel.getAllUserOnServer();
@@ -66,7 +64,6 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
     }
 
     private void setUpItemTouchHelper() {
-        Log.d(TAG, "setUpItemTouchHelper: kienda");
         ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.START | ItemTouchHelper.END) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -108,7 +105,6 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: ");
     }
 
     @Override

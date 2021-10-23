@@ -135,7 +135,6 @@ public class UserViewModel extends ViewModel {
                         loginState.setValue(LoginState.USER_EXIST);
                     });
             if (userEmail.contains("@gmail.com")) {
-
                 return;
             }
             loginState.setValue(LoginState.ERROR_GMAIL);
