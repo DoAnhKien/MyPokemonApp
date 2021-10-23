@@ -1,21 +1,19 @@
 package com.example.mypokemonapp.ui.getfeedback;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mypokemonapp.R;
-import com.example.mypokemonapp.databinding.ActivityAdminBinding;
 import com.example.mypokemonapp.databinding.ActivityGetFeedBackBinding;
 import com.example.mypokemonapp.model.FeedBack;
-import com.example.mypokemonapp.model.Report;
-import com.example.mypokemonapp.viewmodel.UserPokemonViewModel;
-import com.example.mypokemonapp.viewmodel.UserViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -31,6 +29,30 @@ public class GetFeedBackActivity extends AppCompatActivity implements View.OnCli
         binding = DataBindingUtil.setContentView(this, R.layout.activity_get_feed_back);
         setOnClickForViews();
         initViewModels();
+        initDialogForFeedBack();
+    }
+
+    private void initDialogForFeedBack() {
+        viewModel.getAllUserInLocalDatabase().observe(this, users -> {
+                    viewModel.findAFeedBack(users.get(0).getUserId());
+                    viewModel.getCurrentFeedBack().observe(this, feedback -> {
+                        if (feedback != null) {
+                            new AlertDialog.Builder(this)
+                                    .setTitle("Last report have been confirm by admin")
+                                    .setMessage(feedback.getFeedBackContent())
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    })
+                                    .setNegativeButton(android.R.string.no, null)
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
+                        }
+                    });
+                }
+        );
+
     }
 
     private void initViewModels() {
@@ -61,7 +83,7 @@ public class GetFeedBackActivity extends AppCompatActivity implements View.OnCli
         }
         viewModel.getAllUserInLocalDatabase().observe(this, users -> {
                     FeedBack feedBack = new FeedBack(0, users.get(0).getUserId(), String.valueOf(System.currentTimeMillis()), binding.edtContent.getText().toString(), false);
-                    viewModel.insertOrUpdateAReport(feedBack);
+                    viewModel.insertOrUpdateAFeedBack(feedBack);
                     finish();
                 }
         );

@@ -11,7 +11,6 @@ import android.view.View;
 import com.example.mypokemonapp.R;
 import com.example.mypokemonapp.databinding.ActivityDetailShortBinding;
 import com.example.mypokemonapp.model.FeedBack;
-import com.example.mypokemonapp.model.User;
 import com.example.mypokemonapp.ui.getfeedback.GetFeedBackViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -72,7 +71,7 @@ public class DetailShortActivity extends AppCompatActivity implements View.OnCli
     private void makeTheConfirm() {
         if (feedBack != null){
             feedBack.setHandle(true);
-            viewModel.insertOrUpdateAReport(feedBack);
+            viewModel.insertOrUpdateAFeedBack(feedBack);
             finish();
             return;
         }
