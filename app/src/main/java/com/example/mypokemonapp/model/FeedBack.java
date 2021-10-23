@@ -18,6 +18,9 @@ public class FeedBack {
     @SerializedName("feedBackContent")
     @Expose
     private String feedBackContent;
+    @SerializedName("isHandle")
+    @Expose
+    private boolean isHandle;
 
 
     public FeedBack() {
@@ -60,5 +63,13 @@ public class FeedBack {
 
     public void setFeedBackContent(String feedBackContent) {
         this.feedBackContent = feedBackContent;
+    }
+
+    public boolean isHandle() {
+        return isHandle;
+    }
+
+    public void setHandle(boolean handle) {
+        isHandle = handle;
     }
 }
