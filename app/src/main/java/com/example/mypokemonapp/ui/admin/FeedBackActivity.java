@@ -61,8 +61,9 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
     @Override
     public void onClick(FeedBack feedBack) {
         Intent intent = new Intent(this, DetailShortActivity.class);
-        intent.putExtra("KienDAA", feedBack.getFeedBackContent());
-        intent.putExtra("KienDAB", feedBack.getUserId());
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("kkk", feedBack);
+        intent.putExtra("kkk1", bundle);
         startActivity(intent);
     }
 

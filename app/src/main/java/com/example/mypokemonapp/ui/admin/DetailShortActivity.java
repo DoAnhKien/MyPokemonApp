@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class DetailShortActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityDetailShortBinding binding;
-    private FeedBack feedBack;
+    private FeedBack feedBack = null;
     private GetFeedBackViewModel viewModel;
 
     @Override
@@ -43,8 +43,14 @@ public class DetailShortActivity extends AppCompatActivity implements View.OnCli
 
     private void initDataForViews() {
         Intent intent = getIntent();
-        binding.tvPersonSend.setText("Person send: " + intent.getIntExtra("KienDAB", 0));
-        binding.tvContent.setText(intent.getStringExtra("KienDAA"));
+        if (intent.getStringExtra("KienDAA") != null){
+            binding.tvPersonSend.setText("Person send: " + intent.getIntExtra("KienDAB", 0));
+            binding.tvContent.setText(intent.getStringExtra("KienDAA"));
+            return;
+        }
+        feedBack = (FeedBack) intent.getBundleExtra("kkk1").getSerializable("kkk");
+        binding.tvPersonSend.setText("Person send: " + feedBack.getUserId());
+        binding.tvContent.setText(feedBack.getFeedBackContent());
     }
 
     @Override
@@ -64,7 +70,13 @@ public class DetailShortActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void makeTheConfirm() {
-        viewModel.insertOrUpdateAReport(feedBack);
+        if (feedBack != null){
+            feedBack.setHandle(true);
+            viewModel.insertOrUpdateAReport(feedBack);
+            finish();
+            return;
+        }
+        finish();
     }
 
 }

@@ -60,7 +60,7 @@ public class GetFeedBackActivity extends AppCompatActivity implements View.OnCli
             return;
         }
         viewModel.getAllUserInLocalDatabase().observe(this, users -> {
-                    FeedBack feedBack = new FeedBack(0, users.get(0).getUserId(), String.valueOf(System.currentTimeMillis()), binding.edtContent.getText().toString());
+                    FeedBack feedBack = new FeedBack(0, users.get(0).getUserId(), String.valueOf(System.currentTimeMillis()), binding.edtContent.getText().toString(), false);
                     viewModel.insertOrUpdateAReport(feedBack);
                     finish();
                 }

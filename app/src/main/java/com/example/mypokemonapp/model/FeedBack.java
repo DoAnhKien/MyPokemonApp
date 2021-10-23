@@ -28,11 +28,12 @@ public class FeedBack implements Serializable {
     public FeedBack() {
     }
 
-    public FeedBack(Integer feedBackId, Integer userId, String feedBackDate, String feedBackContent) {
+    public FeedBack(Integer feedBackId, Integer userId, String feedBackDate, String feedBackContent, boolean isHandle) {
         this.feedBackId = feedBackId;
         this.userId = userId;
         this.feedBackDate = feedBackDate;
         this.feedBackContent = feedBackContent;
+        this.isHandle = isHandle;
     }
 
     public Integer getFeedBackId() {
