@@ -63,23 +63,17 @@ public class FavoriteFragment extends Fragment {
         viewModel.getAllTheUserPokemonFromServer();
         viewModel.getmUserPokemon().observe(getViewLifecycleOwner(), userPokemons -> {
             LoginActivity.viewModel.getUserLogin().observe(getActivity(), user -> {
-
                 List<UserPokemon> userPokemonList = new ArrayList<>();
-
                 for (int i = 0; i < userPokemons.size(); i++) {
                     if (userPokemons.get(i).getUserEmail().equals(user.getUserEmail())) {
                         userPokemonList.add(userPokemons.get(i));
                     }
                 }
-
                 Log.d(TAG, "onViewCreated: " + userPokemonList.size());
-
                 adapter.submitList(userPokemonList);
-
             });
         });
-
-
+        setUpItemTouchHelper();
         listenerTheEvent();
     }
 

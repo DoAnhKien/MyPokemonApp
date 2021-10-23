@@ -24,7 +24,7 @@ public class DetailShortActivity extends AppCompatActivity {
 
     private void initDataForViews() {
         Intent intent = getIntent();
-        binding.tvPersonSend.setText("Person send: "+ intent.getStringExtra("KienDAB"));
+        binding.tvPersonSend.setText("Person send: "+ intent.getIntExtra("KienDAB",0));
         binding.tvContent.setText(intent.getStringExtra("KienDAA"));
     }
 }
