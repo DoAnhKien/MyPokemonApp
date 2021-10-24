@@ -12,7 +12,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/item_about"
-            android:title="Above us" />
+            android:title="About us" />
     </group>
 
     <group android:checkableBehavior="single">

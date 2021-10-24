@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Send the report to Admin" />
+            android:text="Send the feedback to Admin" />
 
         <EditText
             android:id="@+id/edtContent"
@@ -27,7 +27,7 @@
             android:layout_height="400dp"
             android:layout_below="@id/tv123"
             android:layout_marginTop="1dp"
-            android:hint="Fill the report" />
+            android:hint="Fill the feedback" />
 
         <LinearLayout
             android:id="@+id/ll123"
