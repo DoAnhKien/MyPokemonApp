@@ -38,12 +38,10 @@ public class GetFeedBackActivity extends AppCompatActivity implements View.OnCli
                     viewModel.getCurrentFeedBack().observe(this, feedback -> {
                         if (feedback != null) {
                             new AlertDialog.Builder(this)
-                                    .setTitle("Last report have been confirm by admin")
+                                    .setTitle("Last feedback have been confirm by admin")
                                     .setMessage(feedback.get(feedback.size() -1).getFeedBackContent())
-                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
+                                    .setPositiveButton(android.R.string.yes, (dialog, which) -> {
 
-                                        }
                                     })
                                     .setNegativeButton(android.R.string.no, null)
                                     .setIcon(android.R.drawable.ic_dialog_alert)
