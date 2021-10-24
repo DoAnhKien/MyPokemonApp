@@ -48,6 +48,7 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
     private void setOnClickForView() {
         binding.imgFeedBack.setOnClickListener(this);
         binding.imgReport.setOnClickListener(this);
+        binding.tvSignOut.setOnClickListener(this);
     }
 
     private void initViews() {
@@ -116,7 +117,15 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
             case R.id.imgReport:
                 moveToReportActivity();
                 break;
+            case R.id.tvSignOut:
+                signOut();
+                break;
         }
+    }
+
+    private void signOut() {
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 
     private void moveToReportActivity() {

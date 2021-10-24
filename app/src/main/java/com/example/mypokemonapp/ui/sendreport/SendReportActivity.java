@@ -59,6 +59,7 @@ public class SendReportActivity extends AppCompatActivity implements View.OnClic
         viewModel.getAllUserInLocalDatabase().observe(this, users -> {
                     Report report = new Report(0, 1, users.get(0).getUserId(), String.valueOf(System.currentTimeMillis()), "0", binding.edtContent.getText().toString(), "1123", true);
                     viewModel.insertOrUpdateAReport(report);
+                    Toast.makeText(this, "You just had a post to admin", Toast.LENGTH_SHORT).show();
                     finish();
                 }
         );
