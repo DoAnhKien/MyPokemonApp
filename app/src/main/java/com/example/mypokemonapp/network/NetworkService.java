@@ -70,5 +70,5 @@ public interface NetworkService {
     Observable<FeedBack> deleteFeedBackById(@Path("id") int id);
 
     @POST("feedback/find/{userId}")
-    Observable<FeedBack> findUserFeedBackByUserId(@Path("userId") int userId);
+    Observable<List<FeedBack>> findUserFeedBackByUserId(@Path("userId") int userId);
 }

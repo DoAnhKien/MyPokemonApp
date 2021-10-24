@@ -20,14 +20,14 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class GetFeedBackViewModel extends ViewModel {
 
     private AppDatabaseRepository appDatabaseRepository;
-    private MutableLiveData<FeedBack> currentReport = new MutableLiveData<>();
+    private MutableLiveData<List<FeedBack>> currentReport = new MutableLiveData<>();
 
     @ViewModelInject
     public GetFeedBackViewModel(AppDatabaseRepository appDatabaseRepository) {
         this.appDatabaseRepository = appDatabaseRepository;
     }
 
-    public MutableLiveData<FeedBack> getCurrentFeedBack() {
+    public MutableLiveData<List<FeedBack>> getCurrentFeedBack() {
         return currentReport;
     }
 

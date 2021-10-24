@@ -108,7 +108,7 @@ public class AppDatabaseRepository {
         return networkService.deleteFeedBackById(id);
     }
 
-    public Observable<FeedBack> findFeedBackById(int id) {
+    public Observable<List<FeedBack>> findFeedBackById(int id) {
         return networkService.findUserFeedBackByUserId(id);
     }
 
