@@ -1,6 +1,7 @@
 package com.example.mypokemonapp.ui.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.example.mypokemonapp.R;
 import com.example.mypokemonapp.adapter.UserAdapter;
@@ -16,6 +20,8 @@ import com.example.mypokemonapp.databinding.ActivityFeedBackBinding;
 import com.example.mypokemonapp.databinding.ActivityGetFeedBackBinding;
 import com.example.mypokemonapp.model.FeedBack;
 import com.example.mypokemonapp.model.User;
+import com.example.mypokemonapp.ui.fragments.FavoriteFragment;
+import com.example.mypokemonapp.ui.fragments.PokemonFragment;
 import com.example.mypokemonapp.ui.getfeedback.GetFeedBackViewModel;
 import com.example.mypokemonapp.viewmodel.UserViewModel;
 
@@ -38,6 +44,29 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
         binding = DataBindingUtil.setContentView(this, R.layout.activity_feed_back);
         initViewModels();
         initViews();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_search_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.mainSearch);
+        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return true;
     }
 
     private void initViewModels() {

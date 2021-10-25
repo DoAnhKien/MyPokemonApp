@@ -29,11 +29,12 @@
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
-            <TextView
+            <ImageView
+                android:src="@drawable/ic_login"
                 android:id="@+id/tvSignOut"
                 android:layout_width="wrap_content"
                 android:layout_height="64sp"
-                android:layout_marginStart="170dp"
+                android:layout_marginStart="190dp"
                 android:gravity="center"
                 android:text="Sign out"
                 android:textColor="@color/white" />
