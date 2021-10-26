@@ -36,6 +36,9 @@ public class GetFeedBackActivity extends AppCompatActivity implements View.OnCli
         viewModel.getAllUserInLocalDatabase().observe(this, users -> {
                     viewModel.findAFeedBack(users.get(0).getUserId());
                     viewModel.getCurrentFeedBack().observe(this, feedback -> {
+                        if (feedback.size() == 0) {
+                            return;
+                        }
                         if (feedback != null) {
                             new AlertDialog.Builder(this)
                                     .setTitle("Last feedback have been confirm by admin")
