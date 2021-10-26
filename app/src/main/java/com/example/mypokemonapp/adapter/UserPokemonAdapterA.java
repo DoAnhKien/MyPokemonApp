@@ -47,6 +47,11 @@ public class UserPokemonAdapterA extends RecyclerView.Adapter<UserPokemonAdapter
         notifyDataSetChanged();
     }
 
+    public void insertAUserPokemon(UserPokemon userPokemon) {
+        mUserPokemon.add(mUserPokemon.size(), userPokemon);
+        notifyDataSetChanged();
+    }
+
 
     public void setHandleUserPokemonClick(HandleUserPokemonClick handleUserPokemonClick) {
         this.handleUserPokemonClick = handleUserPokemonClick;
