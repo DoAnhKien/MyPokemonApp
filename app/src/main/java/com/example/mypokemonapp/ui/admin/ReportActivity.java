@@ -70,6 +70,10 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
                 if (isLoaded) {
                     viewModel.requestAllReportsInServer();
                 }
+                if (newText.isEmpty() && newText == null) {
+                    viewModel.requestAllReportsInServer();
+                    return false;
+                }
                 isLoaded = false;
                 adapter.getFilter().filter(newText);
                 return false;

@@ -71,6 +71,10 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
                 if (isLoaded) {
                     viewModel.requestAllFeedBackInServer();
                 }
+                if (newText.isEmpty() && newText == null) {
+                    viewModel.requestAllFeedBackInServer();
+                    return false;
+                }
                 isLoaded = false;
                 adapter.getFilter().filter(newText);
                 return false;
