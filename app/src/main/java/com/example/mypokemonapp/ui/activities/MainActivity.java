@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         MenuItem searchItem = menu.findItem(R.id.mainSearch);
         androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
+        searchItem.setOnMenuItemClickListener(item -> {
+            viewModel.getAllTheUserPokemonFromServer();
+            return false;
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
