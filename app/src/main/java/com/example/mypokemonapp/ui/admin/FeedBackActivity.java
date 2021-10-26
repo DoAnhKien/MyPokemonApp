@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.mypokemonapp.R;
 import com.example.mypokemonapp.adapter.UserAdapter;
@@ -53,16 +54,15 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
 
         MenuItem searchItem = menu.findItem(R.id.mainSearch);
         androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
+        searchView.setOnClickListener(v -> viewModel.requestAllFeedBackInServer());
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                viewModel.requestAllFeedBackInServer();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                viewModel.requestAllFeedBackInServer();
                 adapter.getFilter().filter(newText);
                 return false;
             }
