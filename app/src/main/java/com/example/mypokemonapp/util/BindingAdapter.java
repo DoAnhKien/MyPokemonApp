@@ -53,9 +53,15 @@ public class BindingAdapter {
         textView.setText(convertDate(time, "dd/MM/yyyy hh:mm:ss aa"));
     }
 
-    @androidx.databinding.BindingAdapter("setUserForReportAndFeedBack")
-    public static void setUserForReportAndFeedBack(TextView textView, String userName) {
+    @androidx.databinding.BindingAdapter("setUserNameForReportAndFeedBack")
+    public static void setUserNameForReportAndFeedBack(TextView textView, String userName) {
         textView.setText("User name: " + userName);
+    }
+
+
+    @androidx.databinding.BindingAdapter("setUserEmailForReportAndFeedBack")
+    public static void setUserEmailForReportAndFeedBack(TextView textView, String userName) {
+        textView.setText("User gmail: " + userName);
     }
 
     public static String convertDate(String dateInMilliseconds, String dateFormat) {

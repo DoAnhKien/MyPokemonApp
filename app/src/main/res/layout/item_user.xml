@@ -34,16 +34,16 @@
 
                 <TextView
                     android:id="@+id/tv_email"
+                    setUserEmailForReportAndFeedBack="@{user.userEmail}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{user.userEmail}"
                     android:textStyle="bold" />
 
                 <TextView
+                    setUserNameForReportAndFeedBack="@{user.userName}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5sp"
-                    android:text="@{user.userName}"
                     android:textStyle="bold" />
             </LinearLayout>
 
