@@ -51,20 +51,25 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
 
         MenuItem searchItem = menu.findItem(R.id.mainSearch);
         androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
-        searchView.setOnClickListener(v -> viewModel.requestAllReportsInServer());
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                viewModel.requestAllReportsInServer();
-                adapter.getFilter().filter(newText);
-                return false;
-            }
+        searchView.setOnClickListener(v -> {
+            viewModel.requestAllReportsInServer();
         });
+        searchItem.setOnMenuItemClickListener(item -> {
+            viewModel.requestAllReportsInServer();
+            return false;
+        });
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                adapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
 
         return true;
     }

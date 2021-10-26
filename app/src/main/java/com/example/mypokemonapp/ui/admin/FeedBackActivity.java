@@ -55,6 +55,10 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
         MenuItem searchItem = menu.findItem(R.id.mainSearch);
         androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
         searchView.setOnClickListener(v -> viewModel.requestAllFeedBackInServer());
+        searchItem.setOnMenuItemClickListener(item -> {
+            viewModel.requestAllFeedBackInServer();
+            return false;
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
