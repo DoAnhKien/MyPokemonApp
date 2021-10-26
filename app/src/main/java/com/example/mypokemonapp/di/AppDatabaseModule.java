@@ -46,7 +46,7 @@ public class AppDatabaseModule {
         return Room.databaseBuilder(application.getApplicationContext(),
                 AppDatabase.class, Const.APP_DATABASE)
                 .fallbackToDestructiveMigration()
-                .allowMainThreadQueries() //FIXME remove later
+                .allowMainThreadQueries() // FIXME later on production
                 .build();
 
     }
