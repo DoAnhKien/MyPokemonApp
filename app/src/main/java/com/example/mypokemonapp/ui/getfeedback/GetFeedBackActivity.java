@@ -41,7 +41,7 @@ public class GetFeedBackActivity extends AppCompatActivity implements View.OnCli
                         }
                         if (feedback != null) {
                             new AlertDialog.Builder(this)
-                                    .setTitle("Last feedback have been confirm by admin")
+                                    .setTitle("Last feedback you send")
                                     .setMessage(feedback.get(feedback.size() - 1).getFeedBackContent())
                                     .setPositiveButton(android.R.string.yes, (dialog, which) -> {
 
