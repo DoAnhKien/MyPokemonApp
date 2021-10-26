@@ -89,7 +89,7 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
     public void onClick(Report report, int position) {
         Intent intent = new Intent(this, DetailShortActivity.class);
         intent.putExtra("KienDAA", report.getReportContent());
-        intent.putExtra("KienDAB", report.getUserId());
+        intent.putExtra("KienDAB", report.getUserName());
         startActivity(intent);
     }
 

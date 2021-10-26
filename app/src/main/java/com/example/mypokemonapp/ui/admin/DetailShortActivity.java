@@ -42,13 +42,13 @@ public class DetailShortActivity extends AppCompatActivity implements View.OnCli
 
     private void initDataForViews() {
         Intent intent = getIntent();
-        if (intent.getStringExtra("KienDAA") != null){
-            binding.tvPersonSend.setText("Person send: " + intent.getIntExtra("KienDAB", 0));
+        if (intent.getStringExtra("KienDAA") != null) {
+            binding.tvPersonSend.setText("Person send: " + intent.getStringExtra("KienDAB"));
             binding.tvContent.setText(intent.getStringExtra("KienDAA"));
             return;
         }
         feedBack = (FeedBack) intent.getBundleExtra("kkk1").getSerializable("kkk");
-        binding.tvPersonSend.setText("Person send: " + feedBack.getUserId());
+        binding.tvPersonSend.setText("Person send: " + feedBack.getUserName());
         binding.tvContent.setText(feedBack.getFeedBackContent());
     }
 
@@ -69,7 +69,7 @@ public class DetailShortActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void makeTheConfirm() {
-        if (feedBack != null){
+        if (feedBack != null) {
             feedBack.setHandle(true);
             viewModel.insertOrUpdateAFeedBack(feedBack);
             finish();
