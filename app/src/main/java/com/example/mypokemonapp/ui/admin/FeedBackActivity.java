@@ -67,6 +67,7 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                viewModel.requestAllFeedBackInServer();
                 adapter.getFilter().filter(newText);
                 return false;
             }

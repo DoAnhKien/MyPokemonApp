@@ -66,6 +66,7 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                viewModel.requestAllReportsInServer();
                 adapter.getFilter().filter(newText);
                 return false;
             }
