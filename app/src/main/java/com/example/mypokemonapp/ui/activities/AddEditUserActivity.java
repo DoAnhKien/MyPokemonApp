@@ -20,6 +20,7 @@ public class AddEditUserActivity extends AppCompatActivity implements View.OnCli
     private ActivityAddEditUserBinding binding;
     private UserViewModel viewModel;
     private User user;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class AddEditUserActivity extends AppCompatActivity implements View.OnCli
 
     private void initViews() {
         user = (User) getIntent().getBundleExtra("mmm").getSerializable("123");
+        position = getIntent().getBundleExtra("mmm").getInt("1234", 0);
         binding.setUser(user);
         viewModel = new ViewModelProvider(this).get(UserViewModel.class);
     }
@@ -55,6 +57,9 @@ public class AddEditUserActivity extends AppCompatActivity implements View.OnCli
     private void checkForConfirm() {
         String userName = binding.userName.getText().toString();
         String userPassword = binding.userPassword.getText().toString();
+        user.setUserName(userName);
+        user.setUserPassword(userPassword);
+        AdminActivity.adapter.updateCurrentUser(user, position);
         viewModel.updateUser(user.getUserId(), user.getUserEmail(), userName, userPassword);
         finish();
     }

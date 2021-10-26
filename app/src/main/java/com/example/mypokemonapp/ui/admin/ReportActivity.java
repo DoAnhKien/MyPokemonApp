@@ -1,9 +1,11 @@
 package com.example.mypokemonapp.ui.admin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +21,7 @@ import com.example.mypokemonapp.databinding.ActivityFeedBackBinding;
 import com.example.mypokemonapp.databinding.ActivityReportBinding;
 import com.example.mypokemonapp.model.FeedBack;
 import com.example.mypokemonapp.model.Report;
+import com.example.mypokemonapp.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +86,7 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
     }
 
     @Override
-    public void onClick(Report report) {
+    public void onClick(Report report, int position) {
         Intent intent = new Intent(this, DetailShortActivity.class);
         intent.putExtra("KienDAA", report.getReportContent());
         intent.putExtra("KienDAB", report.getUserId());
@@ -91,7 +94,9 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
     }
 
     @Override
-    public void onLongClick(Report report) {
+    public void onLongClick(Report report, int position) {
+        adapter.deleteReportByPosition(position);
+        viewModel.deleteAReport(report.getReportId());
 
     }
 

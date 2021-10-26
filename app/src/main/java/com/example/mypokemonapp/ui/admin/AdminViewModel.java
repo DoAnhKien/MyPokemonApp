@@ -44,7 +44,7 @@ public class AdminViewModel extends ViewModel {
                 .subscribe(reports -> {
                     mReports.postValue(reports);
                 }, error -> {
-                    Log.d("KienDA", "requestAllFeedBackInServer: " + error.toString());
+
                 });
     }
 
@@ -55,7 +55,7 @@ public class AdminViewModel extends ViewModel {
                 .subscribe(feedBacks -> {
                     mFeedBacks.postValue(feedBacks);
                 }, error -> {
-                    Log.d("KienDA", "requestAllFeedBackInServer: " + error.toString());
+
                 });
     }
 

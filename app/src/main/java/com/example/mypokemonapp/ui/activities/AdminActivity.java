@@ -33,7 +33,7 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
     private static final int REQUEST_CODE = 123;
     private ActivityAdminBinding binding;
     private UserViewModel viewModel;
-    private UserAdapter adapter;
+    public static UserAdapter adapter;
     private String TAG = "kienda";
 
     @Override
@@ -89,6 +89,7 @@ public class AdminActivity extends AppCompatActivity implements OnItemUserOnClic
         Intent intent = new Intent(this, AddEditUserActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("123", user);
+        bundle.putInt("1234", position);
         intent.putExtra("mmm", bundle);
         startActivityForResult(intent, REQUEST_CODE);
     }

@@ -23,17 +23,20 @@ public class FeedBack implements Serializable {
     @SerializedName("isHandle")
     @Expose
     private boolean isHandle;
-
+    @SerializedName("userName")
+    @Expose
+    private String userName;
 
     public FeedBack() {
     }
 
-    public FeedBack(Integer feedBackId, Integer userId, String feedBackDate, String feedBackContent, boolean isHandle) {
+    public FeedBack(Integer feedBackId, Integer userId, String feedBackDate, String feedBackContent, boolean isHandle, String userName) {
         this.feedBackId = feedBackId;
         this.userId = userId;
         this.feedBackDate = feedBackDate;
         this.feedBackContent = feedBackContent;
         this.isHandle = isHandle;
+        this.userName = userName;
     }
 
     public Integer getFeedBackId() {
@@ -74,5 +77,13 @@ public class FeedBack implements Serializable {
 
     public void setHandle(boolean handle) {
         isHandle = handle;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

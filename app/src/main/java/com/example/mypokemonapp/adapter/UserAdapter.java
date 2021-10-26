@@ -37,6 +37,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void updateCurrentUser(User user, int position) {
+        mUser.set(position, user);
+        notifyDataSetChanged();
+    }
 
 
     @NonNull

@@ -42,7 +42,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
 
     private HandleUserPokemonClick handleUserPokemonClick;
 
-    public void deleteAUserPokemon(int position) {
+    public void deleteReportByPosition(int position) {
         mReports.remove(position);
         notifyDataSetChanged();
     }
@@ -64,14 +64,14 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull @NotNull ReportAdapter.ViewHolder holder, int position) {
         holder.bind(mReports.get(position));
-        holder.itemView.setOnClickListener(v -> onReportItemClick.onClick(mReports.get(position)));
+        holder.itemView.setOnClickListener(v -> onReportItemClick.onClick(mReports.get(position), position));
         holder.itemView.setOnLongClickListener(v -> {
-            onReportItemClick.onClick(mReports.get(position));
+            onReportItemClick.onClick(mReports.get(position), position);
             return true;
         });
     }
 
-    private Report getUserPokemonAt(int position) {
+    private Report getReportAt(int position) {
         return mReports.get(position);
     }
 

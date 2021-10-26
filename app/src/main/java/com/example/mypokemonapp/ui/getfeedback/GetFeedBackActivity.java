@@ -80,7 +80,9 @@ public class GetFeedBackActivity extends AppCompatActivity implements View.OnCli
             return;
         }
         viewModel.getAllUserInLocalDatabase().observe(this, users -> {
-                    FeedBack feedBack = new FeedBack(0, users.get(0).getUserId(), String.valueOf(System.currentTimeMillis()), binding.edtContent.getText().toString(), false);
+                    FeedBack feedBack = new FeedBack(
+                            0, users.get(0).getUserId(), String.valueOf(System.currentTimeMillis()), binding.edtContent.getText().toString(),
+                            false, users.get(0).getUserName());
                     viewModel.insertOrUpdateAFeedBack(feedBack);
                     Toast.makeText(this, "You just had a post to admin", Toast.LENGTH_SHORT).show();
                     finish();

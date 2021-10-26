@@ -31,12 +31,14 @@ public class Report implements Serializable {
     @SerializedName("reportStatus")
     @Expose
     private Boolean reportStatus;
-
+    @SerializedName("userName")
+    @Expose
+    private String userName;
 
     public Report() {
     }
 
-    public Report(Integer reportId, Integer adminId, Integer userId, String reportCreateDate, String reportHandleDate, String reportContent, String reportResult, Boolean reportStatus) {
+    public Report(Integer reportId, Integer adminId, Integer userId, String reportCreateDate, String reportHandleDate, String reportContent, String reportResult, Boolean reportStatus, String userName) {
         this.reportId = reportId;
         this.adminId = adminId;
         this.userId = userId;
@@ -45,6 +47,15 @@ public class Report implements Serializable {
         this.reportContent = reportContent;
         this.reportResult = reportResult;
         this.reportStatus = reportStatus;
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Integer getReportId() {

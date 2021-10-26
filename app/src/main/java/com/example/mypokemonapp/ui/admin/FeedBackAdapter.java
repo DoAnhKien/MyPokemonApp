@@ -43,7 +43,7 @@ public class FeedBackAdapter extends RecyclerView.Adapter<FeedBackAdapter.ViewHo
 
     private HandleUserPokemonClick handleUserPokemonClick;
 
-    public void deleteAUserPokemon(int position) {
+    public void deleteFeedBackByPosition(int position) {
         mFeedBack.remove(position);
         notifyDataSetChanged();
     }
@@ -65,14 +65,14 @@ public class FeedBackAdapter extends RecyclerView.Adapter<FeedBackAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull @NotNull FeedBackAdapter.ViewHolder holder, int position) {
         holder.bind(mFeedBack.get(position));
-        holder.itemView.setOnClickListener(v -> onFeedBackItemClick.onClick(mFeedBack.get(position)));
+        holder.itemView.setOnClickListener(v -> onFeedBackItemClick.onClick(mFeedBack.get(position), position));
         holder.itemView.setOnLongClickListener(v -> {
-            mFeedBack.get(position);
+            onFeedBackItemClick.onLongClick(mFeedBack.get(position), position);
             return true;
         });
     }
 
-    private FeedBack getUserPokemonAt(int position) {
+    private FeedBack getFeedBackAt(int position) {
         return mFeedBack.get(position);
     }
 

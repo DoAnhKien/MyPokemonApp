@@ -88,7 +88,7 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
     }
 
     @Override
-    public void onClick(FeedBack feedBack) {
+    public void onClick(FeedBack feedBack, int position) {
         Intent intent = new Intent(this, DetailShortActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("kkk", feedBack);
@@ -97,7 +97,8 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
     }
 
     @Override
-    public void onLongClick(FeedBack feedBack) {
-
+    public void onLongClick(FeedBack feedBack, int position) {
+        adapter.deleteFeedBackByPosition(position);
+        viewModel.deleteAReport(feedBack.getFeedBackId());
     }
 }
