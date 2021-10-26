@@ -56,11 +56,13 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                viewModel.requestAllFeedBackInServer();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                viewModel.requestAllFeedBackInServer();
                 adapter.getFilter().filter(newText);
                 return false;
             }

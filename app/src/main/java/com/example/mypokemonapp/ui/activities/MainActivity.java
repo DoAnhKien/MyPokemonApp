@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                viewModel.getAllTheUserPokemonFromServer();
                 if (binding.vpPokemon.getCurrentItem() == 0) {
                     PokemonFragment.adapter.getFilter().filter(newText);
                 } else if (binding.vpPokemon.getCurrentItem() == 1) {
