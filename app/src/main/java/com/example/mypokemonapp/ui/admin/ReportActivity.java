@@ -63,7 +63,7 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
             @Override
             public boolean onQueryTextSubmit(String query) {
                 viewModel.requestAllReportsInServer();
-                return false;
+                return true;
             }
 
             @Override
