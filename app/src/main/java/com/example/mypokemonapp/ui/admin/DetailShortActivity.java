@@ -70,7 +70,7 @@ public class DetailShortActivity extends AppCompatActivity implements View.OnCli
 
     private void makeTheConfirm() {
         if (feedBack != null) {
-            feedBack.setHandle(true);
+            feedBack.setIsHandle(1);
             viewModel.insertOrUpdateAFeedBack(feedBack);
             finish();
             return;

@@ -29,15 +29,15 @@ public class AdminViewModel extends ViewModel {
         this.appDatabaseRepository = appDatabaseRepository;
     }
 
-    public MutableLiveData<List<Report>> getmReports(){
+    public MutableLiveData<List<Report>> getmReports() {
         return mReports;
     }
 
-    public MutableLiveData<List<FeedBack>> getmFeedBacks(){
+    public MutableLiveData<List<FeedBack>> getmFeedBacks() {
         return mFeedBacks;
     }
 
-    public void requestAllReportsInServer(){
+    public void requestAllReportsInServer() {
         appDatabaseRepository.getAllReport().
                 observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -48,7 +48,7 @@ public class AdminViewModel extends ViewModel {
                 });
     }
 
-    public void requestAllFeedBackInServer(){
+    public void requestAllFeedBackInServer() {
         appDatabaseRepository.getAllFeedBack().
                 observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -92,6 +92,16 @@ public class AdminViewModel extends ViewModel {
                 });
     }
 
+    public void deleteAFeedBack(int id) {
+        appDatabaseRepository.deleteTheFeedBack(id).
+                observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(report1 -> {
+
+                }, error -> {
+
+                });
+    }
 
 
 }

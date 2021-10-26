@@ -97,7 +97,12 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
     public void onLongClick(Report report, int position) {
         adapter.deleteReportByPosition(position);
         viewModel.deleteAReport(report.getReportId());
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        viewModel.requestAllReportsInServer();
     }
 
 }

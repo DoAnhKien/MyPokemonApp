@@ -99,6 +99,12 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
     @Override
     public void onLongClick(FeedBack feedBack, int position) {
         adapter.deleteFeedBackByPosition(position);
-        viewModel.deleteAReport(feedBack.getFeedBackId());
+        viewModel.deleteAFeedBack(feedBack.getFeedBackId());
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        viewModel.requestAllFeedBackInServer();
     }
 }
