@@ -110,7 +110,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
             } else {
                 String filterString = constraint.toString().toLowerCase();
                 for (Report currentReport : mReportsFull) {
-                    if (currentReport.getUserId().toString().toLowerCase().contains(filterString)) {
+                    if (currentReport.getUserName().toString().toLowerCase().contains(filterString)) {
                         filteredList.add(currentReport);
                     }
                 }

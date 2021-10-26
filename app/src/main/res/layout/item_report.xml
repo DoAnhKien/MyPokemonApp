@@ -33,8 +33,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    convertDate="@{report.reportCreateDate}"
                     android:id="@+id/tv_email"
+                    convertDate="@{report.reportCreateDate}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    setUserForReportAndFeedBack="@{report.userName}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold" />

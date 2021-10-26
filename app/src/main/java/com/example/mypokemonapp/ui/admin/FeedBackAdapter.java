@@ -111,7 +111,7 @@ public class FeedBackAdapter extends RecyclerView.Adapter<FeedBackAdapter.ViewHo
             } else {
                 String filterString = constraint.toString().toLowerCase();
                 for (FeedBack currentFeedBack : mFeedBackFull) {
-                    if (currentFeedBack.getUserId().toString().toLowerCase().contains(filterString)) {
+                    if (currentFeedBack.getUserName().toString().toLowerCase().contains(filterString)) {
                         filteredList.add(currentFeedBack);
                     }
                 }

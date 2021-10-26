@@ -12,7 +12,9 @@ import com.example.mypokemonapp.adapter.PokemonAdapter;
 import com.example.mypokemonapp.model.Pokemon;
 
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class BindingAdapter {
 
@@ -48,7 +50,12 @@ public class BindingAdapter {
 
     @androidx.databinding.BindingAdapter("convertDate")
     public static void convertDate(TextView textView, String time) {
-        textView.setText(convertDate(time,"dd/MM/yyyy hh:mm:ss"));
+        textView.setText(convertDate(time, "dd/MM/yyyy hh:mm:ss aa"));
+    }
+
+    @androidx.databinding.BindingAdapter("setUserForReportAndFeedBack")
+    public static void setUserForReportAndFeedBack(TextView textView, String userName) {
+        textView.setText("User name: " + userName);
     }
 
     public static String convertDate(String dateInMilliseconds, String dateFormat) {
