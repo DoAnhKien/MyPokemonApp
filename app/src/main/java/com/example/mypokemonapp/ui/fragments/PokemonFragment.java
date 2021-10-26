@@ -91,7 +91,8 @@ public class PokemonFragment extends Fragment {
                     UserPokemon userPokemon = new UserPokemon(null, user.getUserEmail(), pokemon.getPokemonName(), pokemon.getPokemonUrl());
                     FavoriteFragment.adapter.insertAUserPokemon(userPokemon);
                     viewModel.insertOrUpdateUserPokemon(userPokemon);
-                    adapter.notifyItemChanged(swipedPokemonPosition);;
+                    adapter.notifyItemChanged(swipedPokemonPosition);
+                    viewModel.getAllTheUserPokemonFromServer();
                     Toast.makeText(getActivity(), "Bạn đã thêm vào danh sách yêu thích", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onSwiped: " + swipedPokemonPosition);
                 });

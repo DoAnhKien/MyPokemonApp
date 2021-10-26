@@ -47,7 +47,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="20dp"
                 android:padding="10dp"
-                android:src="@drawable/review" />
+                android:src="@drawable/report" />
 
             <ImageView
                 android:id="@+id/imgFeedBack"
@@ -56,7 +56,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="120dp"
                 android:padding="10dp"
-                android:src="@drawable/report" />
+                android:src="@drawable/review" />
 
         </RelativeLayout>
 
