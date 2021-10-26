@@ -38,6 +38,7 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
     private ActivityFeedBackBinding binding;
     private AdminViewModel viewModel;
     private FeedBackAdapter adapter;
+    private boolean isLoaded = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,10 @@ public class FeedBackActivity extends AppCompatActivity implements OnFeedBackIte
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                viewModel.requestAllFeedBackInServer();
+                if (isLoaded) {
+                    viewModel.requestAllFeedBackInServer();
+                }
+                isLoaded = false;
                 adapter.getFilter().filter(newText);
                 return false;
             }

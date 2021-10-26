@@ -35,6 +35,7 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
     private ActivityReportBinding binding;
     private AdminViewModel viewModel;
     private ReportAdapter adapter;
+    private boolean isLoaded = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,10 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                viewModel.requestAllReportsInServer();
+                if (isLoaded) {
+                    viewModel.requestAllReportsInServer();
+                }
+                isLoaded = false;
                 adapter.getFilter().filter(newText);
                 return false;
             }
