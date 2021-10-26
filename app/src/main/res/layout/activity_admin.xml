@@ -18,26 +18,27 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark">
 
+            <ImageView
+                android:id="@+id/tvSignOut"
+                android:layout_width="40dp"
+                android:layout_height="64sp"
+                android:layout_marginStart="20dp"
+                android:gravity="center"
+                android:src="@drawable/ic_login"
+                android:text="Sign out"
+                android:textColor="@color/white" />
+
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="64sp"
                 android:layout_marginStart="10sp"
+                android:layout_toEndOf="@+id/tvSignOut"
                 android:gravity="center_vertical"
                 android:text="All the user in your app"
                 android:textColor="@color/white"
-                android:textSize="15dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:src="@drawable/ic_login"
-                android:id="@+id/tvSignOut"
-                android:layout_width="wrap_content"
-                android:layout_height="64sp"
-                android:layout_marginStart="190dp"
-                android:gravity="center"
-                android:text="Sign out"
-                android:textColor="@color/white" />
 
             <ImageView
                 android:id="@+id/imgReport"
