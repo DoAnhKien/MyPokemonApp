@@ -62,6 +62,7 @@ public class ReportActivity extends AppCompatActivity implements OnReportItemCli
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                viewModel.requestAllReportsInServer();
                 return false;
             }
 
