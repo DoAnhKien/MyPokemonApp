@@ -26,6 +26,7 @@ public class UserViewModel extends ViewModel {
     private MutableLiveData<LoginState> loginState = new MutableLiveData<>();
     private MutableLiveData<User> userLogin = new MutableLiveData<>();
     private String TAG = "kienda";
+    private String CURRENT_TAG = "kienda";
 
     @ViewModelInject
     public UserViewModel(AppDatabaseRepository appDatabaseRepository) {
