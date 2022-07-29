@@ -24,7 +24,6 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
     private List<Pokemon> mPokemons;
     private List<Pokemon> pokemonFilterList;
 
-
     public PokemonAdapter(List<Pokemon> mPokemons) {
         this.mPokemons = mPokemons;
         this.pokemonFilterList = mPokemons;
@@ -115,5 +114,4 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
             notifyDataSetChanged();
         }
     };
-
 }
